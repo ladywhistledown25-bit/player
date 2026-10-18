@@ -29,21 +29,19 @@ El modo claro está definido en el bloque `.dh-body[data-theme="light"]` de `ski
 
 ## Cómo instalarlo en rolea.es
 
-rolea.es tiene una sección de CSS, una de JavaScript y puntos de inserción HTML. Cada archivo de `rolea/` va en un sitio:
-
 | Archivo | Dónde va |
 |---|---|
 | `skin.css` | CSS personalizado (el `@import` de las fuentes tiene que quedar arriba del todo) |
 | `rolea/javascript.js` | JavaScript personalizado |
-| `rolea/1-antes-del-contenido.html` | Punto de inserción «Antes del contenido»: cabecera y menú con el botón de modo claro |
+| `rolea/1-antes-del-contenido.html` | «Antes del contenido»: cabecera con el logo y el botón de modo claro/oscuro |
 | `rolea/2-antes-del-inicio.html` | «Antes del inicio»: aviso de la Purga |
-| `rolea/3-despues-del-inicio.html` | «Después del inicio»: grupos y afiliados |
+| `rolea/3-despues-del-inicio.html` | «Después del inicio»: afiliados |
 | `rolea/4-despues-del-contenido.html` | «Después del contenido»: pie de página |
 
 «Antes de la página» y «Después de la página» quedan vacíos.
 
-La lista de foros, los temas y los mensajes los genera rolea.es con su propio HTML, así que las clases `.dh-forum`, `.dh-post`, etc. de `template.html` todavía no les afectan: hay que traducir esos estilos a las clases reales de rolea.es a partir del código fuente de una página del foro.
+`skin.css` también viste las piezas propias de rolea.es (barra lateral, lista de escenas, filtros, estadísticas, facciones, widgets de Lugares y Equipo, pie y aviso de cookies), a partir del HTML de la portada con el diseño moderno. Otras páginas (escena abierta, ficha de personaje, foro, documentación) y el diseño clásico usan otras clases y quedan pendientes.
 
-Imágenes: `style="--img:url('...')"` en `.dh-forum__img`, `.dh-lastpost__av`, `.dh-post__avatar` y en los enlaces de `.dh-affiliates`; `style="--dh-header-img:url('...')"` en `.dh-header`.
+`template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 
-Grupos de usuarios: `.g-admin`, `.g-staff`, `.g-purgador`, `.g-superviviente`, `.g-civil`.
+Imágenes: `style="--dh-header-img:url('...')"` en `.dh-header`; `style="--img:url('...')"` en los enlaces de `.dh-affiliates`.
