@@ -27,12 +27,23 @@ Skin oscura con acentos neón para un foro de rol de La Purga ambientado en un p
 
 El modo claro está definido en el bloque `.dh-body[data-theme="light"]` de `skin.css`. Si la plataforma no permite JavaScript, el botón no funcionará y el foro se queda en modo oscuro.
 
-## Cómo adaptarlo a rolea.es
+## Cómo instalarlo en rolea.es
 
-Todas las clases usan el prefijo `dh-`, así que no chocan con las de la plataforma.
+rolea.es tiene una sección de CSS, una de JavaScript y puntos de inserción HTML. Cada archivo de `rolea/` va en un sitio:
 
-1. Pega `skin.css` en el apartado de CSS personalizado del panel.
-2. Si rolea.es deja editar las plantillas HTML, usa la estructura de `template.html` y sustituye los textos de ejemplo por las variables de la plataforma.
-3. Si sólo deja CSS, hay que cambiar los selectores `.dh-*` por las clases reales de rolea.es (por ejemplo `.dh-forum` → la clase de cada fila de foro).
-4. Imágenes: `style="--img:url('...')"` en `.dh-forum__img`, `.dh-lastpost__av`, `.dh-post__avatar` y en los enlaces de `.dh-affiliates`; `style="--dh-header-img:url('...')"` en `.dh-header`.
-5. Grupos de usuarios: `.g-admin`, `.g-staff`, `.g-purgador`, `.g-superviviente`, `.g-civil`.
+| Archivo | Dónde va |
+|---|---|
+| `skin.css` | CSS personalizado (el `@import` de las fuentes tiene que quedar arriba del todo) |
+| `rolea/javascript.js` | JavaScript personalizado |
+| `rolea/1-antes-del-contenido.html` | Punto de inserción «Antes del contenido»: cabecera y menú con el botón de modo claro |
+| `rolea/2-antes-del-inicio.html` | «Antes del inicio»: aviso de la Purga |
+| `rolea/3-despues-del-inicio.html` | «Después del inicio»: grupos y afiliados |
+| `rolea/4-despues-del-contenido.html` | «Después del contenido»: pie de página |
+
+«Antes de la página» y «Después de la página» quedan vacíos.
+
+La lista de foros, los temas y los mensajes los genera rolea.es con su propio HTML, así que las clases `.dh-forum`, `.dh-post`, etc. de `template.html` todavía no les afectan: hay que traducir esos estilos a las clases reales de rolea.es a partir del código fuente de una página del foro.
+
+Imágenes: `style="--img:url('...')"` en `.dh-forum__img`, `.dh-lastpost__av`, `.dh-post__avatar` y en los enlaces de `.dh-affiliates`; `style="--dh-header-img:url('...')"` en `.dh-header`.
+
+Grupos de usuarios: `.g-admin`, `.g-staff`, `.g-purgador`, `.g-superviviente`, `.g-civil`.
