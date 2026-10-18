@@ -37,6 +37,25 @@ body{margin:0;background:#0b0a0e}
   --dh-glow:      0 0 6px rgba(255, 79, 154, .45), 0 0 18px rgba(255, 79, 154, .18);
   --dh-glow-2:    0 0 6px rgba(79, 216, 214, .40), 0 0 18px rgba(79, 216, 214, .15);
 
+  /* Tonos derivados (cada modo los redefine) */
+  --dh-tint-1:     rgba(255, 79, 154, .07);
+  --dh-tint-2:     rgba(79, 216, 214, .05);
+  --dh-selection:  rgba(255, 79, 154, .35);
+  --dh-fade-1:     rgba(11, 10, 14, .25);
+  --dh-fade-2:     rgba(11, 10, 14, .7);
+  --dh-header-ph:  linear-gradient(160deg, #1b1424, #0b0a0e);
+  --dh-logo:       #ffd9ea;
+  --dh-nav-bg:     rgba(19, 17, 24, .92);
+  --dh-warn-tint:  rgba(233, 180, 76, .08);
+  --dh-neon-line:  rgba(255, 79, 154, .35);
+  --dh-neon-2-line: rgba(79, 216, 214, .35);
+  --dh-btn-glow:   0 0 10px rgba(255, 79, 154, .2);
+  --dh-ph:         linear-gradient(135deg, #2a2233, #15121a);
+  --dh-ph-icon:    rgba(236, 230, 240, .25);
+  --dh-say:        #ffb3d4;
+  --dh-g-purgador: #d06a6a;
+  --dh-g-superviviente: #8fbf8a;
+
   --dh-radius:    6px;
   --dh-font-logo: 'Monoton', 'Oswald', sans-serif;
   --dh-font-head: 'Oswald', 'Arial Narrow', sans-serif;
@@ -50,16 +69,17 @@ body{margin:0;background:#0b0a0e}
 .dh-body {
   margin: 0;
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(255, 79, 154, .07), transparent 55%),
-    radial-gradient(ellipse at 100% 100%, rgba(79, 216, 214, .05), transparent 50%),
+    radial-gradient(ellipse at 50% -10%, var(--dh-tint-1), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, var(--dh-tint-2), transparent 50%),
     var(--dh-bg);
   background-attachment: fixed;
   color: var(--dh-text);
   font: 15px/1.6 var(--dh-font-body);
+  transition: background-color .3s, color .3s;
 }
 .dh-body a { color: var(--dh-text); text-decoration: none; transition: color .2s, text-shadow .2s; }
 .dh-body a:hover { color: var(--dh-neon); }
-.dh-body ::selection { background: rgba(255, 79, 154, .35); color: #fff; }
+.dh-body ::selection { background: var(--dh-selection); color: var(--dh-heading); }
 
 .dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
 
@@ -77,15 +97,15 @@ body{margin:0;background:#0b0a0e}
   display: flex;
   align-items: flex-end;
   background:
-    linear-gradient(180deg, rgba(11, 10, 14, .25) 0%, rgba(11, 10, 14, .7) 60%, var(--dh-bg) 100%),
-    var(--dh-header-img, linear-gradient(160deg, #1b1424, #0b0a0e)) center / cover no-repeat;
+    linear-gradient(180deg, var(--dh-fade-1) 0%, var(--dh-fade-2) 60%, var(--dh-bg) 100%),
+    var(--dh-header-img, var(--dh-header-ph)) center / cover no-repeat;
   border-bottom: 1px solid var(--dh-line);
 }
 .dh-header__inner { width: 100%; padding: 48px 16px 28px; text-align: center; }
 .dh-logo {
   margin: 0;
   font: 400 clamp(34px, 7vw, 68px)/1 var(--dh-font-logo);
-  color: #ffd9ea;
+  color: var(--dh-logo);
   text-shadow: var(--dh-glow);
   letter-spacing: .04em;
   /* Parpadeo de bombilla vieja: muy esporádico, no continuo */
@@ -107,7 +127,7 @@ body{margin:0;background:#0b0a0e}
 /* Navegación */
 .dh-nav {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(19, 17, 24, .92);
+  background: var(--dh-nav-bg);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--dh-line);
 }
@@ -131,7 +151,7 @@ body{margin:0;background:#0b0a0e}
   margin: 24px 0;
   display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px;
   padding: 14px 18px;
-  background: linear-gradient(90deg, rgba(233, 180, 76, .08), transparent 70%), var(--dh-surface);
+  background: linear-gradient(90deg, var(--dh-warn-tint), transparent 70%), var(--dh-surface);
   border: 1px solid var(--dh-line);
   border-left: 3px solid var(--dh-warn);
   border-radius: var(--dh-radius);
@@ -179,15 +199,15 @@ body{margin:0;background:#0b0a0e}
   border-radius: var(--dh-radius);
   transition: border-color .25s, background .25s;
 }
-.dh-forum:hover { border-color: rgba(255, 79, 154, .35); background: var(--dh-surface-2); }
-.dh-cat--places .dh-forum:hover { border-color: rgba(79, 216, 214, .35); }
+.dh-forum:hover { border-color: var(--dh-neon-line); background: var(--dh-surface-2); }
+.dh-cat--places .dh-forum:hover { border-color: var(--dh-neon-2-line); }
 
 /* Imagen del foro: pon la tuya con style="--img:url(...)" */
 .dh-forum__img {
   position: relative;
   width: 120px; height: 84px;
   border-radius: 4px;
-  background: var(--img, linear-gradient(135deg, #2a2233, #15121a)) center / cover no-repeat;
+  background: var(--img, var(--dh-ph)) center / cover no-repeat;
   filter: grayscale(.55) brightness(.8) contrast(1.05);
   transition: filter .35s;
   overflow: hidden;
@@ -195,7 +215,7 @@ body{margin:0;background:#0b0a0e}
 .dh-forum:hover .dh-forum__img { filter: grayscale(0) brightness(.95); }
 .dh-forum__img i {
   position: absolute; inset: 0; display: grid; place-items: center;
-  font-size: 26px; color: rgba(236, 230, 240, .25);
+  font-size: 26px; color: var(--dh-ph-icon);
 }
 /* Indicador de mensajes nuevos: un punto encendido en la esquina */
 .dh-forum.is-new .dh-forum__img::after {
@@ -263,7 +283,7 @@ body{margin:0;background:#0b0a0e}
   width: 170px; height: 230px; margin: 0 auto 14px; border-radius: 4px;
   background: var(--img, linear-gradient(160deg, var(--dh-surface-3), var(--dh-bg))) center / cover;
   border: 1px solid var(--dh-line);
-  box-shadow: 0 0 0 4px var(--dh-surface-2), 0 0 0 5px rgba(255, 79, 154, .25);
+  box-shadow: 0 0 0 4px var(--dh-surface-2), 0 0 0 5px var(--dh-neon-line);
 }
 .dh-post__fields { margin: 0; padding: 0; list-style: none; text-align: left; font-size: 12.5px; }
 .dh-post__fields li { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px dashed var(--dh-line); }
@@ -284,8 +304,8 @@ body{margin:0;background:#0b0a0e}
   border: 1px solid var(--dh-line); border-radius: 4px; cursor: pointer;
   transition: color .2s, border-color .2s, box-shadow .2s;
 }
-.dh-btn:hover { color: var(--dh-heading); border-color: var(--dh-neon); box-shadow: 0 0 10px rgba(255, 79, 154, .2); }
-.dh-btn--primary { color: var(--dh-heading); border-color: rgba(255, 79, 154, .6); }
+.dh-btn:hover { color: var(--dh-heading); border-color: var(--dh-neon); box-shadow: var(--dh-btn-glow); }
+.dh-btn--primary { color: var(--dh-heading); border-color: var(--dh-neon); }
 
 .dh-post__content { padding: 22px 26px; font-size: 15px; line-height: 1.75; flex: 1; }
 .dh-post__content p { margin: 0 0 1em; }
@@ -295,7 +315,7 @@ body{margin:0;background:#0b0a0e}
   color: var(--dh-text-soft); font-style: italic;
 }
 /* Diálogo del personaje: resaltado con color de acento suave */
-.dh-say { color: #ffb3d4; font-weight: 600; }
+.dh-say { color: var(--dh-say); font-weight: 600; }
 .dh-signature {
   padding: 14px 26px; border-top: 1px solid var(--dh-line);
   font-size: 12px; color: var(--dh-text-mute); text-align: center;
@@ -320,8 +340,8 @@ body{margin:0;background:#0b0a0e}
 .dh-online a { font-weight: 600; }
 .dh-online .g-admin { color: var(--dh-neon); }
 .dh-online .g-staff { color: var(--dh-neon-2); }
-.dh-online .g-purgador { color: #d06a6a; }
-.dh-online .g-superviviente { color: #8fbf8a; }
+.dh-online .g-purgador { color: var(--dh-g-purgador); }
+.dh-online .g-superviviente { color: var(--dh-g-superviviente); }
 .dh-online .g-civil { color: var(--dh-text); }
 .dh-legend { margin-top: 10px; font-size: 11.5px; color: var(--dh-text-mute); }
 .dh-legend span { margin-right: 12px; }
@@ -339,6 +359,64 @@ body{margin:0;background:#0b0a0e}
   font-size: 12px; color: var(--dh-text-mute); letter-spacing: .08em;
 }
 .dh-footer a { color: var(--dh-text-soft); }
+
+/* --------------------------------------------------------------------------
+   Modo claro: papel hueso envejecido, sin blancos puros.
+   Se activa con data-theme="light" en .dh-body (botón de la barra de menú).
+   El neón se vuelve tinta: mismos tonos, más profundos y sin brillo.
+   -------------------------------------------------------------------------- */
+.dh-body[data-theme="light"] {
+  --dh-bg:        #e9e2d5;
+  --dh-surface:   #f2ece1;
+  --dh-surface-2: #ebe3d5;
+  --dh-surface-3: #e0d6c5;
+  --dh-line:      #d3c8b5;
+
+  --dh-text:      #3b3540;
+  --dh-text-soft: #5f5765;
+  --dh-text-mute: #736a74;
+  --dh-heading:   #26212b;
+
+  --dh-neon:      #b8326a;
+  --dh-neon-2:    #176c69;
+  --dh-warn:      #855610;
+
+  --dh-glow:      0 0 1px rgba(184, 50, 106, .25);
+  --dh-glow-2:    0 0 1px rgba(23, 108, 105, .25);
+
+  --dh-tint-1:     rgba(184, 50, 106, .05);
+  --dh-tint-2:     rgba(23, 108, 105, .05);
+  --dh-selection:  rgba(184, 50, 106, .2);
+  --dh-fade-1:     rgba(233, 226, 213, .15);
+  --dh-fade-2:     rgba(233, 226, 213, .75);
+  --dh-header-ph:  linear-gradient(160deg, #ddd1c0, #e9e2d5);
+  --dh-logo:       #9c2a5a;
+  --dh-nav-bg:     rgba(242, 236, 225, .94);
+  --dh-warn-tint:  rgba(133, 86, 16, .08);
+  --dh-neon-line:  rgba(184, 50, 106, .4);
+  --dh-neon-2-line: rgba(23, 108, 105, .4);
+  --dh-btn-glow:   none;
+  --dh-ph:         linear-gradient(135deg, #d9cebd, #c9bba6);
+  --dh-ph-icon:    rgba(59, 53, 64, .3);
+  --dh-say:        #a02d5e;
+  --dh-g-purgador: #a63f3f;
+  --dh-g-superviviente: #43683f;
+}
+/* En papel las fotos no necesitan oscurecerse tanto */
+.dh-body[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
+.dh-body[data-theme="light"] .dh-forum:hover .dh-forum__img { filter: none; }
+
+/* Botón para cambiar de modo */
+.dh-theme-toggle {
+  display: block; padding: 12px 14px; background: none; border: 0; cursor: pointer;
+  font: 500 12px/1 var(--dh-font-head); letter-spacing: .15em; text-transform: uppercase;
+  color: var(--dh-text-soft);
+}
+.dh-theme-toggle:hover { color: var(--dh-heading); }
+.dh-theme-toggle i { margin-right: 6px; opacity: .7; }
+.dh-theme-toggle .dh-when-light,
+.dh-body[data-theme="light"] .dh-theme-toggle .dh-when-dark { display: none; }
+.dh-body[data-theme="light"] .dh-theme-toggle .dh-when-light { display: inline; }
 
 /* --------------------------------------------------------------------------
    Responsive
@@ -389,6 +467,12 @@ body{margin:0;background:#0b0a0e}
       <li><a href="#"><i class="fa-solid fa-map-location-dot"></i>Mapa</a></li>
       <li><a href="#"><i class="fa-solid fa-users"></i>Miembros</a></li>
       <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Buscar</a></li>
+      <li>
+        <button class="dh-theme-toggle" type="button" onclick="dhToggleTheme()">
+          <span class="dh-when-dark"><i class="fa-solid fa-sun"></i>Modo claro</span>
+          <span class="dh-when-light"><i class="fa-solid fa-moon"></i>Modo oscuro</span>
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -825,4 +909,17 @@ body{margin:0;background:#0b0a0e}
     Decayed Hours · skin original · Funciona con <a href="https://rolea.es">rolea.es</a>
   </footer>
 </div>
+
+<!-- Cambio de modo claro/oscuro. Recuerda la elección de cada usuario. -->
+<script>
+(function () {
+  var root = document.querySelector('.dh-body');
+  try { if (localStorage.getItem('dh-theme') === 'light') root.setAttribute('data-theme', 'light'); } catch (e) {}
+  window.dhToggleTheme = function () {
+    var light = root.getAttribute('data-theme') !== 'light';
+    if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+    try { localStorage.setItem('dh-theme', light ? 'light' : 'dark'); } catch (e) {}
+  };
+})();
+</script>
 </body></html>

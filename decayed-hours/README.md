@@ -16,7 +16,16 @@ Skin oscura con acentos neón para un foro de rol de La Purga ambientado en un p
 - Neón cian `#4fd8d6`: lugares del parque, citas
 - Ámbar `#e9b44c`: aviso y reloj de la Purga
 
-El brillo sólo aparece en el logo, la línea bajo cada categoría, el punto de "nuevo" y al pasar el ratón; el resto es mate.
+**Modo oscuro** (por defecto). El brillo sólo aparece en el logo, la línea bajo cada categoría, el punto de "nuevo" y al pasar el ratón; el resto es mate.
+
+**Modo claro** (botón «Modo claro» en la barra de menú; se guarda la elección de cada usuario):
+
+- Fondos color hueso: `#e9e2d5` → `#f2ece1` → `#ebe3d5` → `#e0d6c5`, nunca blanco puro
+- Texto: `#3b3540` (normal), `#5f5765` (secundario), `#26212b` (títulos)
+- Los neones pasan a tonos tinta sin brillo: rosa `#b8326a`, cian `#176c69`, ámbar `#855610`
+- Las fotos llevan un leve tono sepia
+
+El modo claro está definido en el bloque `.dh-body[data-theme="light"]` de `skin.css`. Si la plataforma no permite JavaScript, el botón no funcionará y el foro se queda en modo oscuro.
 
 ## Cómo adaptarlo a rolea.es
 

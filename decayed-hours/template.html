@@ -26,6 +26,12 @@
       <li><a href="#"><i class="fa-solid fa-map-location-dot"></i>Mapa</a></li>
       <li><a href="#"><i class="fa-solid fa-users"></i>Miembros</a></li>
       <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Buscar</a></li>
+      <li>
+        <button class="dh-theme-toggle" type="button" onclick="dhToggleTheme()">
+          <span class="dh-when-dark"><i class="fa-solid fa-sun"></i>Modo claro</span>
+          <span class="dh-when-light"><i class="fa-solid fa-moon"></i>Modo oscuro</span>
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -462,3 +468,16 @@
     Decayed Hours · skin original · Funciona con <a href="https://rolea.es">rolea.es</a>
   </footer>
 </div>
+
+<!-- Cambio de modo claro/oscuro. Recuerda la elección de cada usuario. -->
+<script>
+(function () {
+  var root = document.querySelector('.dh-body');
+  try { if (localStorage.getItem('dh-theme') === 'light') root.setAttribute('data-theme', 'light'); } catch (e) {}
+  window.dhToggleTheme = function () {
+    var light = root.getAttribute('data-theme') !== 'light';
+    if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+    try { localStorage.setItem('dh-theme', light ? 'light' : 'dark'); } catch (e) {}
+  };
+})();
+</script>
