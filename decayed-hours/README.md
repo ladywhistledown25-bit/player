@@ -42,6 +42,8 @@ El modo claro está definido en el bloque `.dh-body[data-theme="light"]` de `ski
 
 `skin.css` también viste las piezas propias de rolea.es (barra lateral, lista de escenas, filtros, estadísticas, facciones, widgets de Lugares y Equipo, pie y aviso de cookies), a partir del HTML de la portada con el diseño moderno. Otras páginas (escena abierta, ficha de personaje, foro, documentación) y el diseño clásico usan otras clases y quedan pendientes.
 
+**Escenas abiertas** (direcciones que empiezan por `/scenes/`): la skin se desactiva para respetar el formato inmersivo de rolea.es. No cambia el fondo ni ninguna pieza de la plataforma, y oculta la cabecera, el aviso y el pie de la skin. Lo controla el atributo `data-path` que rolea.es pone en `<html>`; si quieres excluir otra página, añade su ruta igual que `/scenes/`.
+
 `template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 
 Imágenes: `style="--dh-header-img:url('...')"` en `.dh-header`; `style="--img:url('...')"` en los enlaces de `.dh-affiliates`.
