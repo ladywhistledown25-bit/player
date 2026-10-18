@@ -8,7 +8,7 @@
      .dh-affiliates; para la cabecera usa style="--dh-header-img:url('...')"
      en .dh-header. Sin imagen se muestra un degradado oscuro con un icono.
      ====================================================================== -->
-<div class="dh-body">
+<div class="dh">
 
   <!-- CABECERA -->
   <header class="dh-header"> <!-- añade aquí style="--dh-header-img:url('...')" -->
@@ -27,7 +27,7 @@
       <li><a href="#"><i class="fa-solid fa-users"></i>Miembros</a></li>
       <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Buscar</a></li>
       <li>
-        <button class="dh-theme-toggle" type="button" onclick="dhToggleTheme()">
+        <button class="dh-theme-toggle" type="button">
           <span class="dh-when-dark"><i class="fa-solid fa-sun"></i>Modo claro</span>
           <span class="dh-when-light"><i class="fa-solid fa-moon"></i>Modo oscuro</span>
         </button>
@@ -469,15 +469,19 @@
   </footer>
 </div>
 
-<!-- Cambio de modo claro/oscuro. Recuerda la elección de cada usuario. -->
 <script>
+/* DECAYED HOURS — cambio de modo claro/oscuro
+   Pegar en: JavaScript personalizado.
+   Recuerda la elección de cada usuario en su navegador. */
 (function () {
-  var root = document.querySelector('.dh-body');
+  var root = document.documentElement;
   try { if (localStorage.getItem('dh-theme') === 'light') root.setAttribute('data-theme', 'light'); } catch (e) {}
-  window.dhToggleTheme = function () {
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest || !e.target.closest('.dh-theme-toggle')) return;
     var light = root.getAttribute('data-theme') !== 'light';
     if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
     try { localStorage.setItem('dh-theme', light ? 'light' : 'dark'); } catch (e) {}
-  };
+  });
 })();
 </script>

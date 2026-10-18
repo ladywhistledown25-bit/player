@@ -61,27 +61,31 @@
 /* --------------------------------------------------------------------------
    Base
    -------------------------------------------------------------------------- */
-.dh-body {
-  margin: 0;
+/* Fondo y texto para toda la página de rolea.es */
+html, body {
   background:
     radial-gradient(ellipse at 50% -10%, var(--dh-tint-1), transparent 55%),
     radial-gradient(ellipse at 100% 100%, var(--dh-tint-2), transparent 50%),
-    var(--dh-bg);
-  background-attachment: fixed;
+    var(--dh-bg) !important;
+  background-attachment: fixed !important;
   color: var(--dh-text);
   font: 15px/1.6 var(--dh-font-body);
   transition: background-color .3s, color .3s;
 }
-.dh-body a { color: var(--dh-text); text-decoration: none; transition: color .2s, text-shadow .2s; }
-.dh-body a:hover { color: var(--dh-neon); }
-.dh-body ::selection { background: var(--dh-selection); color: var(--dh-heading); }
-
-.dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
+body { margin: 0; }
+::selection { background: var(--dh-selection); color: var(--dh-heading); }
 
 /* Barra de scroll discreta */
-.dh-body::-webkit-scrollbar { width: 10px; }
-.dh-body::-webkit-scrollbar-track { background: var(--dh-bg); }
-.dh-body::-webkit-scrollbar-thumb { background: var(--dh-surface-3); border-radius: 5px; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--dh-bg); }
+::-webkit-scrollbar-thumb { background: var(--dh-surface-3); border-radius: 5px; }
+
+/* Bloques propios de la skin (cada punto de inserción va envuelto en .dh) */
+.dh { color: var(--dh-text); font-family: var(--dh-font-body); }
+.dh a { color: var(--dh-text); text-decoration: none; transition: color .2s, text-shadow .2s; }
+.dh a:hover { color: var(--dh-neon); }
+
+.dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
 
 /* --------------------------------------------------------------------------
    Cabecera
@@ -357,10 +361,10 @@
 
 /* --------------------------------------------------------------------------
    Modo claro: papel hueso envejecido, sin blancos puros.
-   Se activa con data-theme="light" en .dh-body (botón de la barra de menú).
+   Se activa con data-theme="light" en <html> (botón de la barra de menú).
    El neón se vuelve tinta: mismos tonos, más profundos y sin brillo.
    -------------------------------------------------------------------------- */
-.dh-body[data-theme="light"] {
+:root[data-theme="light"] {
   --dh-bg:        #e9e2d5;
   --dh-surface:   #f2ece1;
   --dh-surface-2: #ebe3d5;
@@ -398,8 +402,8 @@
   --dh-g-superviviente: #43683f;
 }
 /* En papel las fotos no necesitan oscurecerse tanto */
-.dh-body[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
-.dh-body[data-theme="light"] .dh-forum:hover .dh-forum__img { filter: none; }
+:root[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
+:root[data-theme="light"] .dh-forum:hover .dh-forum__img { filter: none; }
 
 /* Botón para cambiar de modo */
 .dh-theme-toggle {
@@ -410,8 +414,8 @@
 .dh-theme-toggle:hover { color: var(--dh-heading); }
 .dh-theme-toggle i { margin-right: 6px; opacity: .7; }
 .dh-theme-toggle .dh-when-light,
-.dh-body[data-theme="light"] .dh-theme-toggle .dh-when-dark { display: none; }
-.dh-body[data-theme="light"] .dh-theme-toggle .dh-when-light { display: inline; }
+:root[data-theme="light"] .dh-theme-toggle .dh-when-dark { display: none; }
+:root[data-theme="light"] .dh-theme-toggle .dh-when-light { display: inline; }
 
 /* --------------------------------------------------------------------------
    Responsive

@@ -2,7 +2,6 @@
 <html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Decayed Hours</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-body{margin:0;background:#0b0a0e}
 /* ==========================================================================
    DECAYED HOURS — skin para rolea.es
    La Purga · Parque de diversiones abandonado
@@ -66,27 +65,31 @@ body{margin:0;background:#0b0a0e}
 /* --------------------------------------------------------------------------
    Base
    -------------------------------------------------------------------------- */
-.dh-body {
-  margin: 0;
+/* Fondo y texto para toda la página de rolea.es */
+html, body {
   background:
     radial-gradient(ellipse at 50% -10%, var(--dh-tint-1), transparent 55%),
     radial-gradient(ellipse at 100% 100%, var(--dh-tint-2), transparent 50%),
-    var(--dh-bg);
-  background-attachment: fixed;
+    var(--dh-bg) !important;
+  background-attachment: fixed !important;
   color: var(--dh-text);
   font: 15px/1.6 var(--dh-font-body);
   transition: background-color .3s, color .3s;
 }
-.dh-body a { color: var(--dh-text); text-decoration: none; transition: color .2s, text-shadow .2s; }
-.dh-body a:hover { color: var(--dh-neon); }
-.dh-body ::selection { background: var(--dh-selection); color: var(--dh-heading); }
-
-.dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
+body { margin: 0; }
+::selection { background: var(--dh-selection); color: var(--dh-heading); }
 
 /* Barra de scroll discreta */
-.dh-body::-webkit-scrollbar { width: 10px; }
-.dh-body::-webkit-scrollbar-track { background: var(--dh-bg); }
-.dh-body::-webkit-scrollbar-thumb { background: var(--dh-surface-3); border-radius: 5px; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--dh-bg); }
+::-webkit-scrollbar-thumb { background: var(--dh-surface-3); border-radius: 5px; }
+
+/* Bloques propios de la skin (cada punto de inserción va envuelto en .dh) */
+.dh { color: var(--dh-text); font-family: var(--dh-font-body); }
+.dh a { color: var(--dh-text); text-decoration: none; transition: color .2s, text-shadow .2s; }
+.dh a:hover { color: var(--dh-neon); }
+
+.dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
 
 /* --------------------------------------------------------------------------
    Cabecera
@@ -362,10 +365,10 @@ body{margin:0;background:#0b0a0e}
 
 /* --------------------------------------------------------------------------
    Modo claro: papel hueso envejecido, sin blancos puros.
-   Se activa con data-theme="light" en .dh-body (botón de la barra de menú).
+   Se activa con data-theme="light" en <html> (botón de la barra de menú).
    El neón se vuelve tinta: mismos tonos, más profundos y sin brillo.
    -------------------------------------------------------------------------- */
-.dh-body[data-theme="light"] {
+:root[data-theme="light"] {
   --dh-bg:        #e9e2d5;
   --dh-surface:   #f2ece1;
   --dh-surface-2: #ebe3d5;
@@ -403,8 +406,8 @@ body{margin:0;background:#0b0a0e}
   --dh-g-superviviente: #43683f;
 }
 /* En papel las fotos no necesitan oscurecerse tanto */
-.dh-body[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
-.dh-body[data-theme="light"] .dh-forum:hover .dh-forum__img { filter: none; }
+:root[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
+:root[data-theme="light"] .dh-forum:hover .dh-forum__img { filter: none; }
 
 /* Botón para cambiar de modo */
 .dh-theme-toggle {
@@ -415,8 +418,8 @@ body{margin:0;background:#0b0a0e}
 .dh-theme-toggle:hover { color: var(--dh-heading); }
 .dh-theme-toggle i { margin-right: 6px; opacity: .7; }
 .dh-theme-toggle .dh-when-light,
-.dh-body[data-theme="light"] .dh-theme-toggle .dh-when-dark { display: none; }
-.dh-body[data-theme="light"] .dh-theme-toggle .dh-when-light { display: inline; }
+:root[data-theme="light"] .dh-theme-toggle .dh-when-dark { display: none; }
+:root[data-theme="light"] .dh-theme-toggle .dh-when-light { display: inline; }
 
 /* --------------------------------------------------------------------------
    Responsive
@@ -449,7 +452,7 @@ body{margin:0;background:#0b0a0e}
      .dh-affiliates; para la cabecera usa style="--dh-header-img:url('...')"
      en .dh-header. Sin imagen se muestra un degradado oscuro con un icono.
      ====================================================================== -->
-<div class="dh-body">
+<div class="dh">
 
   <!-- CABECERA -->
   <header class="dh-header"> <!-- añade aquí style="--dh-header-img:url('...')" -->
@@ -468,7 +471,7 @@ body{margin:0;background:#0b0a0e}
       <li><a href="#"><i class="fa-solid fa-users"></i>Miembros</a></li>
       <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Buscar</a></li>
       <li>
-        <button class="dh-theme-toggle" type="button" onclick="dhToggleTheme()">
+        <button class="dh-theme-toggle" type="button">
           <span class="dh-when-dark"><i class="fa-solid fa-sun"></i>Modo claro</span>
           <span class="dh-when-light"><i class="fa-solid fa-moon"></i>Modo oscuro</span>
         </button>
@@ -910,16 +913,20 @@ body{margin:0;background:#0b0a0e}
   </footer>
 </div>
 
-<!-- Cambio de modo claro/oscuro. Recuerda la elección de cada usuario. -->
 <script>
+/* DECAYED HOURS — cambio de modo claro/oscuro
+   Pegar en: JavaScript personalizado.
+   Recuerda la elección de cada usuario en su navegador. */
 (function () {
-  var root = document.querySelector('.dh-body');
+  var root = document.documentElement;
   try { if (localStorage.getItem('dh-theme') === 'light') root.setAttribute('data-theme', 'light'); } catch (e) {}
-  window.dhToggleTheme = function () {
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest || !e.target.closest('.dh-theme-toggle')) return;
     var light = root.getAttribute('data-theme') !== 'light';
     if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
     try { localStorage.setItem('dh-theme', light ? 'light' : 'dark'); } catch (e) {}
-  };
+  });
 })();
 </script>
 </body></html>
