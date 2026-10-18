@@ -1,0 +1,464 @@
+<!-- ======================================================================
+     DECAYED HOURS — estructura HTML de la skin
+     Requiere skin.css y Font Awesome 6:
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+     Imágenes: añade style="--img:url('https://tu-imagen.jpg')" a cualquier
+     .dh-forum__img, .dh-lastpost__av, .dh-post__avatar o enlace de
+     .dh-affiliates; para la cabecera usa style="--dh-header-img:url('...')"
+     en .dh-header. Sin imagen se muestra un degradado oscuro con un icono.
+     ====================================================================== -->
+<div class="dh-body">
+
+  <!-- CABECERA -->
+  <header class="dh-header"> <!-- añade aquí style="--dh-header-img:url('...')" -->
+    <div class="dh-header__inner">
+      <h1 class="dh-logo">Decayed Hours</h1>
+      <p class="dh-tagline">Doce horas · Un parque · Ninguna regla</p>
+    </div>
+  </header>
+
+  <nav class="dh-nav">
+    <ul>
+      <li><a href="#" class="is-active"><i class="fa-solid fa-ticket"></i>Inicio</a></li>
+      <li><a href="#"><i class="fa-solid fa-scroll"></i>Normas</a></li>
+      <li><a href="#"><i class="fa-solid fa-book-skull"></i>Ambientación</a></li>
+      <li><a href="#"><i class="fa-solid fa-map-location-dot"></i>Mapa</a></li>
+      <li><a href="#"><i class="fa-solid fa-users"></i>Miembros</a></li>
+      <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Buscar</a></li>
+    </ul>
+  </nav>
+
+  <main class="dh-wrap">
+
+    <!-- AVISO DE LA PURGA -->
+    <div class="dh-alert">
+      <i class="dh-alert__icon fa-solid fa-triangle-exclamation"></i>
+      <p class="dh-alert__text">
+        <strong>Aviso del Sistema de Emergencias:</strong> durante las próximas doce horas todo crimen,
+        incluido el asesinato, será legal. Las atracciones de Decayed Hours permanecerán encendidas.
+      </p>
+      <div class="dh-alert__clock">03:17:42<small>Hasta el amanecer</small></div>
+    </div>
+
+    <!-- =========================== ADMINISTRACIÓN =========================== -->
+    <section class="dh-cat">
+      <div class="dh-cat__head">
+        <h2 class="dh-cat__title">Administración</h2>
+        <p class="dh-cat__desc">Antes de cruzar las puertas, lee el folleto.</p>
+      </div>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-scroll"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Normativa</a></h3>
+          <p class="dh-forum__desc">Reglas del foro, de convivencia y del sistema de rol. Obligatorio leerlas.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Normas generales</a></li>
+            <li><a href="#">Normas de la Purga</a></li>
+            <li><a href="#">Sistema de combate</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>6</b>temas<br><b>6</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Actualización de normas · v2</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hace 2 días</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-book-skull"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Ambientación</a></h3>
+          <p class="dh-forum__desc">La historia de la Purga, del parque y de la noche en la que todo vuelve a encenderse.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">La Purga</a></li>
+            <li><a href="#">Historia del parque</a></li>
+            <li><a href="#">Cronología</a></li>
+            <li><a href="#">Facciones</a></li>
+            <li><a href="#">Mapa del parque</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>14</b>temas<br><b>21</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Los Hijos del Carrusel</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hoy</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-id-card"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Registros</a></h3>
+          <p class="dh-forum__desc">Reserva tu rostro, tu nombre y tu lugar en el parque antes de que lo haga otro.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Físicos</a></li>
+            <li><a href="#">Nombres</a></li>
+            <li><a href="#">Empleos y atracciones</a></li>
+            <li><a href="#">Grupos</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>4</b>temas<br><b>132</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Registro de físicos</a>
+            <span class="dh-lastpost__by">por <a href="#">Wendy Hale</a> · hace 1 hora</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-masks-theater"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Personajes</a></h3>
+          <p class="dh-forum__desc">Fichas, relaciones y cronologías. Quién entra al parque, y quién sale.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Fichas aceptadas</a></li>
+            <li><a href="#">Fichas en revisión</a></li>
+            <li><a href="#">Relaciones</a></li>
+            <li><a href="#">Cronologías</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>48</b>temas<br><b>203</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Eli Navarro · el chico de la noria</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 3 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Taquilla de atención</a></h3>
+          <p class="dh-forum__desc">Peticiones, dudas, ausencias y sugerencias para el staff.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Peticiones</a></li>
+            <li><a href="#">Dudas</a></li>
+            <li><a href="#">Ausencias</a></li>
+            <li><a href="#">Sugerencias</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>19</b>temas<br><b>57</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Ausencia hasta el lunes</a>
+            <span class="dh-lastpost__by">por <a href="#">Marlo Quinn</a> · ayer</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ========================= LUGARES DEL PARQUE ========================= -->
+    <section class="dh-cat dh-cat--places">
+      <div class="dh-cat__head">
+        <h2 class="dh-cat__title">Lugares del parque</h2>
+        <p class="dh-cat__desc">Las luces siguen encendidas. Nadie recuerda quién las enciende.</p>
+      </div>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-ticket"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Puertas del Ocaso</a></h3>
+          <p class="dh-forum__desc">La entrada principal. Torniquetes oxidados, taquillas vacías y una sirena que no deja de sonar.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Taquillas</a></li>
+            <li><a href="#">Aparcamiento</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>12</b>temas<br><b>88</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Nadie compra entrada esta noche</a>
+            <span class="dh-lastpost__by">por <a href="#">Wendy Hale</a> · hace 20 min</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-store"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">El Paseo Central</a></h3>
+          <p class="dh-forum__desc">Casetas de feria, premios que nadie reclama y olor a algodón de azúcar quemado.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Casetas de tiro</a></li>
+            <li><a href="#">Puestos de comida</a></li>
+            <li><a href="#">Tienda de recuerdos</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>9</b>temas<br><b>64</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Tres disparos, un peluche</a>
+            <span class="dh-lastpost__by">por <a href="#">Marlo Quinn</a> · hace 2 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-dharmachakra"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">La Gran Rueda</a></h3>
+          <p class="dh-forum__desc">La noria gira sola. Desde la cabina más alta se ve todo el parque… y a quien te busca.</p>
+        </div>
+        <div class="dh-forum__stats"><b>5</b>temas<br><b>41</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Cabina 13</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 1 hora</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-route"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">El Descarrilado</a></h3>
+          <p class="dh-forum__desc">La montaña rusa que cerró tras el accidente de 1998. Los vagones aún tienen marcas.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Andén</a></li>
+            <li><a href="#">Túnel de subida</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>3</b>temas<br><b>19</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Primera fila</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · ayer</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-ghost"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Casa de los Lamentos</a></h3>
+          <p class="dh-forum__desc">El pasaje del terror. Algunos de los actores nunca se fueron a casa.</p>
+        </div>
+        <div class="dh-forum__stats"><b>4</b>temas<br><b>27</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">No toques las cortinas</a>
+            <span class="dh-lastpost__by">por <a href="#">Wendy Hale</a> · hace 4 días</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-clone"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Laberinto de Espejos</a></h3>
+          <p class="dh-forum__desc">Cien reflejos, una salida. Asegúrate de que el que te sigue es sólo tu reflejo.</p>
+        </div>
+        <div class="dh-forum__stats"><b>2</b>temas<br><b>11</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">¿Cuál de los dos eres tú?</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 1 semana</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-hat-wizard"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Carpa del Gran Circo</a></h3>
+          <p class="dh-forum__desc">La función empieza a medianoche. El público no puede marcharse antes del final.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">La pista</a></li>
+            <li><a href="#">Camerinos</a></li>
+            <li><a href="#">Las jaulas</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>7</b>temas<br><b>52</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Damas y caballeros…</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hace 5 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-water"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Lago de los Cisnes</a></h3>
+          <p class="dh-forum__desc">Barcas con forma de cisne y un agua tan negra que no deja ver el fondo.</p>
+        </div>
+        <div class="dh-forum__stats"><b>2</b>temas<br><b>9</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Algo se mueve bajo la barca</a>
+            <span class="dh-lastpost__by">por <a href="#">Marlo Quinn</a> · hace 3 días</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-gears"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Bajo el parque</a></h3>
+          <p class="dh-forum__desc">Túneles de mantenimiento que conectan todas las atracciones. Sólo el personal conoce el camino.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Sala de máquinas</a></li>
+            <li><a href="#">Oficina de seguridad</a></li>
+            <li><a href="#">Túneles</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>6</b>temas<br><b>33</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Las cámaras siguen grabando</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hace 6 horas</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================== OFF-ROL ============================== -->
+    <section class="dh-cat">
+      <div class="dh-cat__head">
+        <h2 class="dh-cat__title">Fuera del parque</h2>
+        <p class="dh-cat__desc">Off-rol, juegos y afiliaciones.</p>
+      </div>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-mug-hot"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Sala de descanso</a></h3>
+          <p class="dh-forum__desc">Charla libre entre usuarios. Aquí nadie te persigue.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Off-topic</a></li>
+            <li><a href="#">Juegos</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>22</b>temas<br><b>310</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Cuenta hasta 1000</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 5 min</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-handshake"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Afiliaciones</a></h3>
+          <p class="dh-forum__desc">Élites, hermanos y directorios.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Hermanos</a></li>
+            <li><a href="#">Élite</a></li>
+            <li><a href="#">Normales</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>31</b>temas<br><b>45</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Petición de élite</a>
+            <span class="dh-lastpost__by">por <a href="#">Invitado</a> · ayer</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================ ESTADÍSTICAS ============================ -->
+    <div class="dh-box">
+      <h4 class="dh-box__title"><i class="fa-solid fa-chart-simple"></i>El parque esta noche</h4>
+      <div class="dh-stats">
+        <div><b>42</b><span>Usuarios</span></div>
+        <div><b>211</b><span>Temas</span></div>
+        <div><b>1.093</b><span>Mensajes</span></div>
+        <div><b>Eli N.</b><span>Último registro</span></div>
+      </div>
+    </div>
+
+    <div class="dh-box">
+      <h4 class="dh-box__title"><i class="fa-solid fa-eye"></i>Quién sigue dentro</h4>
+      <p class="dh-online">
+        <a class="g-admin" href="#">Ringmaster</a>, <a class="g-staff" href="#">Wendy Hale</a>,
+        <a class="g-purgador" href="#">Marlo Quinn</a>, <a class="g-superviviente" href="#">Eli Navarro</a>
+        y 3 invitados.
+      </p>
+      <p class="dh-legend">
+        <span class="g-admin">● Administración</span>
+        <span class="g-staff">● Moderación</span>
+        <span class="g-purgador">● Purgadores</span>
+        <span class="g-superviviente">● Supervivientes</span>
+        <span class="g-civil">● Civiles</span>
+      </p>
+    </div>
+
+    <div class="dh-box">
+      <h4 class="dh-box__title"><i class="fa-solid fa-link"></i>Afiliados</h4>
+      <div class="dh-affiliates">
+        <a href="#"></a><a href="#"></a>
+        <a href="#"></a><a href="#"></a>
+        <a href="#"></a><a href="#"></a>
+      </div>
+    </div>
+
+    <!-- ====================== VISTA DE TEMA (EJEMPLO) ====================== -->
+    <h2 class="dh-topic__title">Cabina 13
+      <small>La Gran Rueda · Lugares del parque · Trama: Primera hora</small>
+    </h2>
+
+    <article class="dh-post">
+      <aside class="dh-post__profile">
+        <h3 class="dh-post__name"><a href="#">Eli Navarro</a></h3>
+        <p class="dh-post__rank">Superviviente</p>
+        <div class="dh-post__avatar"></div>
+        <ul class="dh-post__fields">
+          <li><span>Edad</span><b>19 años</b></li>
+          <li><span>Rol en el parque</span><b>Operario de la noria</b></li>
+          <li><span>Purgas vividas</span><b>3</b></li>
+          <li><span>Mensajes</span><b>64</b></li>
+        </ul>
+      </aside>
+      <div class="dh-post__main">
+        <div class="dh-post__meta">
+          <span><i class="fa-regular fa-clock"></i> 03:17 · Noche de la Purga</span>
+          <div class="dh-post__actions">
+            <button class="dh-btn"><i class="fa-solid fa-quote-left"></i>Citar</button>
+            <button class="dh-btn dh-btn--primary"><i class="fa-solid fa-reply"></i>Responder</button>
+          </div>
+        </div>
+        <div class="dh-post__content">
+          <p>La cabina crujió al llegar arriba y se detuvo, balanceándose sobre un parque que parecía respirar.
+          Desde allí Eli podía contar las luces que aún funcionaban: el carrusel, la carpa, la caseta de tiro.
+          Y una linterna, abajo, que no debería estar ahí.</p>
+          <p><span class="dh-say">—Si no me muevo, no me ven —</span>se dijo, aunque llevaba tres Purgas sabiendo que eso
+          nunca era verdad.</p>
+          <blockquote>La noria no se detiene sola. Alguien tiene la palanca.</blockquote>
+        </div>
+        <div class="dh-signature">“Las luces se apagan a las siete. Nosotros no.”</div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="dh-footer">
+    Decayed Hours · skin original · Funciona con <a href="https://rolea.es">rolea.es</a>
+  </footer>
+</div>

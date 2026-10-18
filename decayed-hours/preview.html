@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Decayed Hours</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body{margin:0;background:#0b0a0e}
+/* ==========================================================================
+   DECAYED HOURS — skin para rolea.es
+   La Purga · Parque de diversiones abandonado
+   Modo oscuro con acentos neón contenidos.
+
+   Todas las clases llevan el prefijo .dh- para no chocar con las de la
+   plataforma. Cambia la paleta desde :root y el resto se ajusta solo.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Oswald:wght@400;500;600&family=Karla:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* Fondos (del más profundo al más elevado) */
+  --dh-bg:        #0b0a0e;
+  --dh-surface:   #131118;
+  --dh-surface-2: #1a1720;
+  --dh-surface-3: #221e2a;
+  --dh-line:      #2c2735;
+
+  /* Texto */
+  --dh-text:      #cdc6d3;
+  --dh-text-soft: #9a92a3;
+  --dh-text-mute: #6b6474;
+  --dh-heading:   #ece6f0;
+
+  /* Neón: se usa sólo en logo, títulos de categoría, hover y "nuevo" */
+  --dh-neon:      #ff4f9a;   /* rosa feria */
+  --dh-neon-2:    #4fd8d6;   /* cian bombilla */
+  --dh-warn:      #e9b44c;   /* ámbar sirena (alertas de la Purga) */
+
+  /* Brillos suaves: alfa baja para que acentúen sin cansar la vista */
+  --dh-glow:      0 0 6px rgba(255, 79, 154, .45), 0 0 18px rgba(255, 79, 154, .18);
+  --dh-glow-2:    0 0 6px rgba(79, 216, 214, .40), 0 0 18px rgba(79, 216, 214, .15);
+
+  --dh-radius:    6px;
+  --dh-font-logo: 'Monoton', 'Oswald', sans-serif;
+  --dh-font-head: 'Oswald', 'Arial Narrow', sans-serif;
+  --dh-font-body: 'Karla', 'Segoe UI', sans-serif;
+  --dh-max:       1100px;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+.dh-body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(255, 79, 154, .07), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(79, 216, 214, .05), transparent 50%),
+    var(--dh-bg);
+  background-attachment: fixed;
+  color: var(--dh-text);
+  font: 15px/1.6 var(--dh-font-body);
+}
+.dh-body a { color: var(--dh-text); text-decoration: none; transition: color .2s, text-shadow .2s; }
+.dh-body a:hover { color: var(--dh-neon); }
+.dh-body ::selection { background: rgba(255, 79, 154, .35); color: #fff; }
+
+.dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
+
+/* Barra de scroll discreta */
+.dh-body::-webkit-scrollbar { width: 10px; }
+.dh-body::-webkit-scrollbar-track { background: var(--dh-bg); }
+.dh-body::-webkit-scrollbar-thumb { background: var(--dh-surface-3); border-radius: 5px; }
+
+/* --------------------------------------------------------------------------
+   Cabecera
+   -------------------------------------------------------------------------- */
+.dh-header {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  background:
+    linear-gradient(180deg, rgba(11, 10, 14, .25) 0%, rgba(11, 10, 14, .7) 60%, var(--dh-bg) 100%),
+    var(--dh-header-img, linear-gradient(160deg, #1b1424, #0b0a0e)) center / cover no-repeat;
+  border-bottom: 1px solid var(--dh-line);
+}
+.dh-header__inner { width: 100%; padding: 48px 16px 28px; text-align: center; }
+.dh-logo {
+  margin: 0;
+  font: 400 clamp(34px, 7vw, 68px)/1 var(--dh-font-logo);
+  color: #ffd9ea;
+  text-shadow: var(--dh-glow);
+  letter-spacing: .04em;
+  /* Parpadeo de bombilla vieja: muy esporádico, no continuo */
+  animation: dh-flicker 9s infinite;
+}
+.dh-tagline {
+  margin: 14px 0 0;
+  font: 400 13px/1.4 var(--dh-font-head);
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--dh-text-soft);
+}
+@keyframes dh-flicker {
+  0%, 91%, 93%, 96%, 100% { opacity: 1; }
+  92%, 95% { opacity: .55; text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) { .dh-logo { animation: none; } }
+
+/* Navegación */
+.dh-nav {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(19, 17, 24, .92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--dh-line);
+}
+.dh-nav ul {
+  max-width: var(--dh-max); margin: 0 auto; padding: 0 16px;
+  list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+}
+.dh-nav a {
+  display: block; padding: 12px 14px;
+  font: 500 12px/1 var(--dh-font-head); letter-spacing: .15em; text-transform: uppercase;
+  color: var(--dh-text-soft);
+  border-bottom: 2px solid transparent;
+}
+.dh-nav a:hover, .dh-nav a.is-active { color: var(--dh-heading); border-bottom-color: var(--dh-neon); }
+.dh-nav i { margin-right: 6px; opacity: .7; }
+
+/* --------------------------------------------------------------------------
+   Aviso de la Purga (barra de estado del parque)
+   -------------------------------------------------------------------------- */
+.dh-alert {
+  margin: 24px 0;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(90deg, rgba(233, 180, 76, .08), transparent 70%), var(--dh-surface);
+  border: 1px solid var(--dh-line);
+  border-left: 3px solid var(--dh-warn);
+  border-radius: var(--dh-radius);
+}
+.dh-alert__icon { color: var(--dh-warn); font-size: 20px; }
+.dh-alert__text { font-size: 14px; color: var(--dh-text-soft); }
+.dh-alert__text strong { color: var(--dh-heading); font-weight: 600; }
+.dh-alert__clock {
+  font: 500 22px/1 var(--dh-font-head); letter-spacing: .08em; color: var(--dh-warn);
+  font-variant-numeric: tabular-nums;
+}
+.dh-alert__clock small { display: block; font-size: 10px; letter-spacing: .2em; color: var(--dh-text-mute); text-align: right; margin-top: 4px; }
+
+/* --------------------------------------------------------------------------
+   Categorías y foros (índice clásico)
+   -------------------------------------------------------------------------- */
+.dh-cat { margin: 0 0 32px; }
+.dh-cat__head {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
+  padding: 0 4px 10px;
+  border-bottom: 1px solid var(--dh-line);
+  position: relative;
+}
+/* La línea neón bajo la categoría: corta, para acentuar sin saturar */
+.dh-cat__head::after {
+  content: ""; position: absolute; left: 4px; bottom: -1px;
+  width: 64px; height: 2px; background: var(--dh-neon); box-shadow: var(--dh-glow);
+}
+.dh-cat--places .dh-cat__head::after { background: var(--dh-neon-2); box-shadow: var(--dh-glow-2); }
+.dh-cat__title {
+  margin: 0;
+  font: 600 20px/1.2 var(--dh-font-head); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--dh-heading);
+}
+.dh-cat__desc { margin: 0; font-size: 13px; font-style: italic; color: var(--dh-text-mute); }
+
+.dh-forum {
+  display: grid;
+  grid-template-columns: 120px 1fr 90px 220px;
+  gap: 18px; align-items: center;
+  padding: 14px;
+  margin-top: 10px;
+  background: var(--dh-surface);
+  border: 1px solid var(--dh-line);
+  border-radius: var(--dh-radius);
+  transition: border-color .25s, background .25s;
+}
+.dh-forum:hover { border-color: rgba(255, 79, 154, .35); background: var(--dh-surface-2); }
+.dh-cat--places .dh-forum:hover { border-color: rgba(79, 216, 214, .35); }
+
+/* Imagen del foro: pon la tuya con style="--img:url(...)" */
+.dh-forum__img {
+  position: relative;
+  width: 120px; height: 84px;
+  border-radius: 4px;
+  background: var(--img, linear-gradient(135deg, #2a2233, #15121a)) center / cover no-repeat;
+  filter: grayscale(.55) brightness(.8) contrast(1.05);
+  transition: filter .35s;
+  overflow: hidden;
+}
+.dh-forum:hover .dh-forum__img { filter: grayscale(0) brightness(.95); }
+.dh-forum__img i {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 26px; color: rgba(236, 230, 240, .25);
+}
+/* Indicador de mensajes nuevos: un punto encendido en la esquina */
+.dh-forum.is-new .dh-forum__img::after {
+  content: ""; position: absolute; top: 7px; right: 7px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--dh-neon); box-shadow: var(--dh-glow);
+}
+.dh-cat--places .dh-forum.is-new .dh-forum__img::after { background: var(--dh-neon-2); box-shadow: var(--dh-glow-2); }
+
+.dh-forum__name {
+  margin: 0 0 4px;
+  font: 500 17px/1.25 var(--dh-font-head); letter-spacing: .06em; text-transform: uppercase;
+}
+.dh-forum__name a { color: var(--dh-heading); }
+.dh-forum__name a:hover { color: var(--dh-neon); text-shadow: var(--dh-glow); }
+.dh-cat--places .dh-forum__name a:hover { color: var(--dh-neon-2); text-shadow: var(--dh-glow-2); }
+.dh-forum__desc { margin: 0; font-size: 13.5px; color: var(--dh-text-soft); }
+
+.dh-subforums { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.dh-subforums a {
+  display: inline-block; padding: 2px 9px;
+  font-size: 12px; color: var(--dh-text-soft);
+  background: var(--dh-surface-3); border: 1px solid var(--dh-line); border-radius: 20px;
+}
+.dh-subforums a::before { content: "\203A"; margin-right: 5px; color: var(--dh-text-mute); }
+.dh-subforums a:hover { color: var(--dh-heading); border-color: var(--dh-text-mute); }
+
+.dh-forum__stats { text-align: center; font-size: 12px; color: var(--dh-text-mute); line-height: 1.5; }
+.dh-forum__stats b { display: block; font: 500 16px/1.2 var(--dh-font-head); color: var(--dh-text); }
+
+.dh-lastpost {
+  display: flex; gap: 10px; align-items: center;
+  padding-left: 16px; border-left: 1px solid var(--dh-line);
+  font-size: 12.5px; color: var(--dh-text-mute); min-width: 0;
+}
+.dh-lastpost__av {
+  flex: none; width: 38px; height: 38px; border-radius: 50%;
+  background: var(--img, var(--dh-surface-3)) center / cover;
+  border: 1px solid var(--dh-line);
+}
+.dh-lastpost__info { min-width: 0; }
+.dh-lastpost__topic { display: block; color: var(--dh-text); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dh-lastpost__by a { color: var(--dh-text-soft); }
+
+/* --------------------------------------------------------------------------
+   Vista de tema (postbit clásico)
+   -------------------------------------------------------------------------- */
+.dh-topic__title {
+  margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--dh-line);
+  font: 600 24px/1.2 var(--dh-font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--dh-heading);
+}
+.dh-topic__title small { display: block; margin-top: 6px; font: 400 12px var(--dh-font-body); letter-spacing: .1em; color: var(--dh-text-mute); text-transform: none; }
+
+.dh-post {
+  display: grid; grid-template-columns: 220px 1fr;
+  margin-bottom: 20px;
+  background: var(--dh-surface); border: 1px solid var(--dh-line); border-radius: var(--dh-radius);
+  overflow: hidden;
+}
+.dh-post__profile { padding: 20px 16px; background: var(--dh-surface-2); border-right: 1px solid var(--dh-line); text-align: center; }
+.dh-post__name { margin: 0; font: 500 18px/1.2 var(--dh-font-head); letter-spacing: .08em; text-transform: uppercase; }
+.dh-post__name a { color: var(--dh-heading); }
+.dh-post__rank { margin: 4px 0 14px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--dh-neon); }
+.dh-post__avatar {
+  width: 170px; height: 230px; margin: 0 auto 14px; border-radius: 4px;
+  background: var(--img, linear-gradient(160deg, var(--dh-surface-3), var(--dh-bg))) center / cover;
+  border: 1px solid var(--dh-line);
+  box-shadow: 0 0 0 4px var(--dh-surface-2), 0 0 0 5px rgba(255, 79, 154, .25);
+}
+.dh-post__fields { margin: 0; padding: 0; list-style: none; text-align: left; font-size: 12.5px; }
+.dh-post__fields li { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px dashed var(--dh-line); }
+.dh-post__fields span { color: var(--dh-text-mute); }
+.dh-post__fields b { color: var(--dh-text); font-weight: 600; text-align: right; }
+
+.dh-post__main { display: flex; flex-direction: column; min-width: 0; }
+.dh-post__meta {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 10px 20px; border-bottom: 1px solid var(--dh-line);
+  font-size: 12px; color: var(--dh-text-mute);
+}
+.dh-post__actions { display: flex; gap: 6px; }
+.dh-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px; font: 500 11px/1 var(--dh-font-head); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--dh-text-soft); background: transparent;
+  border: 1px solid var(--dh-line); border-radius: 4px; cursor: pointer;
+  transition: color .2s, border-color .2s, box-shadow .2s;
+}
+.dh-btn:hover { color: var(--dh-heading); border-color: var(--dh-neon); box-shadow: 0 0 10px rgba(255, 79, 154, .2); }
+.dh-btn--primary { color: var(--dh-heading); border-color: rgba(255, 79, 154, .6); }
+
+.dh-post__content { padding: 22px 26px; font-size: 15px; line-height: 1.75; flex: 1; }
+.dh-post__content p { margin: 0 0 1em; }
+.dh-post__content blockquote {
+  margin: 1em 0; padding: 12px 16px;
+  background: var(--dh-surface-2); border-left: 2px solid var(--dh-neon-2); border-radius: 0 4px 4px 0;
+  color: var(--dh-text-soft); font-style: italic;
+}
+/* Diálogo del personaje: resaltado con color de acento suave */
+.dh-say { color: #ffb3d4; font-weight: 600; }
+.dh-signature {
+  padding: 14px 26px; border-top: 1px solid var(--dh-line);
+  font-size: 12px; color: var(--dh-text-mute); text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Pie: estadísticas, conectados, afiliados
+   -------------------------------------------------------------------------- */
+.dh-box {
+  margin: 0 0 20px; padding: 18px 20px;
+  background: var(--dh-surface); border: 1px solid var(--dh-line); border-radius: var(--dh-radius);
+}
+.dh-box__title {
+  margin: 0 0 12px; font: 500 13px/1 var(--dh-font-head); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--dh-text-soft);
+}
+.dh-box__title i { color: var(--dh-neon-2); margin-right: 8px; }
+.dh-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; text-align: center; }
+.dh-stats b { display: block; font: 500 24px/1.1 var(--dh-font-head); color: var(--dh-heading); }
+.dh-stats span { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--dh-text-mute); }
+.dh-online { font-size: 13.5px; color: var(--dh-text-soft); }
+.dh-online a { font-weight: 600; }
+.dh-online .g-admin { color: var(--dh-neon); }
+.dh-online .g-staff { color: var(--dh-neon-2); }
+.dh-online .g-purgador { color: #d06a6a; }
+.dh-online .g-superviviente { color: #8fbf8a; }
+.dh-online .g-civil { color: var(--dh-text); }
+.dh-legend { margin-top: 10px; font-size: 11.5px; color: var(--dh-text-mute); }
+.dh-legend span { margin-right: 12px; }
+
+.dh-affiliates { display: flex; flex-wrap: wrap; gap: 6px; }
+.dh-affiliates a {
+  width: 88px; height: 31px; border: 1px solid var(--dh-line); border-radius: 3px;
+  background: var(--img, var(--dh-surface-3)) center / cover;
+  filter: grayscale(1) brightness(.75); transition: filter .25s;
+}
+.dh-affiliates a:hover { filter: none; }
+
+.dh-footer {
+  padding: 28px 16px 40px; text-align: center;
+  font-size: 12px; color: var(--dh-text-mute); letter-spacing: .08em;
+}
+.dh-footer a { color: var(--dh-text-soft); }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .dh-forum { grid-template-columns: 96px 1fr 80px; }
+  .dh-forum__img { width: 96px; height: 72px; }
+  .dh-lastpost { grid-column: 1 / -1; padding: 10px 0 0; border-left: 0; border-top: 1px solid var(--dh-line); }
+}
+@media (max-width: 640px) {
+  .dh-forum { grid-template-columns: 72px 1fr; gap: 12px; }
+  .dh-forum__img { width: 72px; height: 72px; }
+  .dh-forum__stats { display: none; }
+  .dh-alert { grid-template-columns: auto 1fr; }
+  .dh-alert__clock { grid-column: 1 / -1; text-align: center; }
+  .dh-alert__clock small { text-align: center; }
+  .dh-post { grid-template-columns: 1fr; }
+  .dh-post__profile { border-right: 0; border-bottom: 1px solid var(--dh-line); }
+  .dh-post__content { padding: 18px; }
+  .dh-stats { grid-template-columns: repeat(2, 1fr); }
+}
+</style></head><body>
+<!-- ======================================================================
+     DECAYED HOURS — estructura HTML de la skin
+     Requiere skin.css y Font Awesome 6:
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+     Imágenes: añade style="--img:url('https://tu-imagen.jpg')" a cualquier
+     .dh-forum__img, .dh-lastpost__av, .dh-post__avatar o enlace de
+     .dh-affiliates; para la cabecera usa style="--dh-header-img:url('...')"
+     en .dh-header. Sin imagen se muestra un degradado oscuro con un icono.
+     ====================================================================== -->
+<div class="dh-body">
+
+  <!-- CABECERA -->
+  <header class="dh-header"> <!-- añade aquí style="--dh-header-img:url('...')" -->
+    <div class="dh-header__inner">
+      <h1 class="dh-logo">Decayed Hours</h1>
+      <p class="dh-tagline">Doce horas · Un parque · Ninguna regla</p>
+    </div>
+  </header>
+
+  <nav class="dh-nav">
+    <ul>
+      <li><a href="#" class="is-active"><i class="fa-solid fa-ticket"></i>Inicio</a></li>
+      <li><a href="#"><i class="fa-solid fa-scroll"></i>Normas</a></li>
+      <li><a href="#"><i class="fa-solid fa-book-skull"></i>Ambientación</a></li>
+      <li><a href="#"><i class="fa-solid fa-map-location-dot"></i>Mapa</a></li>
+      <li><a href="#"><i class="fa-solid fa-users"></i>Miembros</a></li>
+      <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i>Buscar</a></li>
+    </ul>
+  </nav>
+
+  <main class="dh-wrap">
+
+    <!-- AVISO DE LA PURGA -->
+    <div class="dh-alert">
+      <i class="dh-alert__icon fa-solid fa-triangle-exclamation"></i>
+      <p class="dh-alert__text">
+        <strong>Aviso del Sistema de Emergencias:</strong> durante las próximas doce horas todo crimen,
+        incluido el asesinato, será legal. Las atracciones de Decayed Hours permanecerán encendidas.
+      </p>
+      <div class="dh-alert__clock">03:17:42<small>Hasta el amanecer</small></div>
+    </div>
+
+    <!-- =========================== ADMINISTRACIÓN =========================== -->
+    <section class="dh-cat">
+      <div class="dh-cat__head">
+        <h2 class="dh-cat__title">Administración</h2>
+        <p class="dh-cat__desc">Antes de cruzar las puertas, lee el folleto.</p>
+      </div>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-scroll"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Normativa</a></h3>
+          <p class="dh-forum__desc">Reglas del foro, de convivencia y del sistema de rol. Obligatorio leerlas.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Normas generales</a></li>
+            <li><a href="#">Normas de la Purga</a></li>
+            <li><a href="#">Sistema de combate</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>6</b>temas<br><b>6</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Actualización de normas · v2</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hace 2 días</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-book-skull"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Ambientación</a></h3>
+          <p class="dh-forum__desc">La historia de la Purga, del parque y de la noche en la que todo vuelve a encenderse.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">La Purga</a></li>
+            <li><a href="#">Historia del parque</a></li>
+            <li><a href="#">Cronología</a></li>
+            <li><a href="#">Facciones</a></li>
+            <li><a href="#">Mapa del parque</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>14</b>temas<br><b>21</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Los Hijos del Carrusel</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hoy</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-id-card"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Registros</a></h3>
+          <p class="dh-forum__desc">Reserva tu rostro, tu nombre y tu lugar en el parque antes de que lo haga otro.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Físicos</a></li>
+            <li><a href="#">Nombres</a></li>
+            <li><a href="#">Empleos y atracciones</a></li>
+            <li><a href="#">Grupos</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>4</b>temas<br><b>132</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Registro de físicos</a>
+            <span class="dh-lastpost__by">por <a href="#">Wendy Hale</a> · hace 1 hora</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-masks-theater"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Personajes</a></h3>
+          <p class="dh-forum__desc">Fichas, relaciones y cronologías. Quién entra al parque, y quién sale.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Fichas aceptadas</a></li>
+            <li><a href="#">Fichas en revisión</a></li>
+            <li><a href="#">Relaciones</a></li>
+            <li><a href="#">Cronologías</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>48</b>temas<br><b>203</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Eli Navarro · el chico de la noria</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 3 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Taquilla de atención</a></h3>
+          <p class="dh-forum__desc">Peticiones, dudas, ausencias y sugerencias para el staff.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Peticiones</a></li>
+            <li><a href="#">Dudas</a></li>
+            <li><a href="#">Ausencias</a></li>
+            <li><a href="#">Sugerencias</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>19</b>temas<br><b>57</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Ausencia hasta el lunes</a>
+            <span class="dh-lastpost__by">por <a href="#">Marlo Quinn</a> · ayer</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ========================= LUGARES DEL PARQUE ========================= -->
+    <section class="dh-cat dh-cat--places">
+      <div class="dh-cat__head">
+        <h2 class="dh-cat__title">Lugares del parque</h2>
+        <p class="dh-cat__desc">Las luces siguen encendidas. Nadie recuerda quién las enciende.</p>
+      </div>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-ticket"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Puertas del Ocaso</a></h3>
+          <p class="dh-forum__desc">La entrada principal. Torniquetes oxidados, taquillas vacías y una sirena que no deja de sonar.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Taquillas</a></li>
+            <li><a href="#">Aparcamiento</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>12</b>temas<br><b>88</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Nadie compra entrada esta noche</a>
+            <span class="dh-lastpost__by">por <a href="#">Wendy Hale</a> · hace 20 min</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-store"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">El Paseo Central</a></h3>
+          <p class="dh-forum__desc">Casetas de feria, premios que nadie reclama y olor a algodón de azúcar quemado.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Casetas de tiro</a></li>
+            <li><a href="#">Puestos de comida</a></li>
+            <li><a href="#">Tienda de recuerdos</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>9</b>temas<br><b>64</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Tres disparos, un peluche</a>
+            <span class="dh-lastpost__by">por <a href="#">Marlo Quinn</a> · hace 2 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum is-new">
+        <div class="dh-forum__img"><i class="fa-solid fa-dharmachakra"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">La Gran Rueda</a></h3>
+          <p class="dh-forum__desc">La noria gira sola. Desde la cabina más alta se ve todo el parque… y a quien te busca.</p>
+        </div>
+        <div class="dh-forum__stats"><b>5</b>temas<br><b>41</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Cabina 13</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 1 hora</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-route"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">El Descarrilado</a></h3>
+          <p class="dh-forum__desc">La montaña rusa que cerró tras el accidente de 1998. Los vagones aún tienen marcas.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Andén</a></li>
+            <li><a href="#">Túnel de subida</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>3</b>temas<br><b>19</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Primera fila</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · ayer</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-ghost"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Casa de los Lamentos</a></h3>
+          <p class="dh-forum__desc">El pasaje del terror. Algunos de los actores nunca se fueron a casa.</p>
+        </div>
+        <div class="dh-forum__stats"><b>4</b>temas<br><b>27</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">No toques las cortinas</a>
+            <span class="dh-lastpost__by">por <a href="#">Wendy Hale</a> · hace 4 días</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-clone"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Laberinto de Espejos</a></h3>
+          <p class="dh-forum__desc">Cien reflejos, una salida. Asegúrate de que el que te sigue es sólo tu reflejo.</p>
+        </div>
+        <div class="dh-forum__stats"><b>2</b>temas<br><b>11</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">¿Cuál de los dos eres tú?</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 1 semana</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-hat-wizard"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Carpa del Gran Circo</a></h3>
+          <p class="dh-forum__desc">La función empieza a medianoche. El público no puede marcharse antes del final.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">La pista</a></li>
+            <li><a href="#">Camerinos</a></li>
+            <li><a href="#">Las jaulas</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>7</b>temas<br><b>52</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Damas y caballeros…</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hace 5 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-water"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Lago de los Cisnes</a></h3>
+          <p class="dh-forum__desc">Barcas con forma de cisne y un agua tan negra que no deja ver el fondo.</p>
+        </div>
+        <div class="dh-forum__stats"><b>2</b>temas<br><b>9</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Algo se mueve bajo la barca</a>
+            <span class="dh-lastpost__by">por <a href="#">Marlo Quinn</a> · hace 3 días</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-gears"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Bajo el parque</a></h3>
+          <p class="dh-forum__desc">Túneles de mantenimiento que conectan todas las atracciones. Sólo el personal conoce el camino.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Sala de máquinas</a></li>
+            <li><a href="#">Oficina de seguridad</a></li>
+            <li><a href="#">Túneles</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>6</b>temas<br><b>33</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Las cámaras siguen grabando</a>
+            <span class="dh-lastpost__by">por <a href="#">Ringmaster</a> · hace 6 horas</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================== OFF-ROL ============================== -->
+    <section class="dh-cat">
+      <div class="dh-cat__head">
+        <h2 class="dh-cat__title">Fuera del parque</h2>
+        <p class="dh-cat__desc">Off-rol, juegos y afiliaciones.</p>
+      </div>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-mug-hot"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Sala de descanso</a></h3>
+          <p class="dh-forum__desc">Charla libre entre usuarios. Aquí nadie te persigue.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Off-topic</a></li>
+            <li><a href="#">Juegos</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>22</b>temas<br><b>310</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Cuenta hasta 1000</a>
+            <span class="dh-lastpost__by">por <a href="#">Eli Navarro</a> · hace 5 min</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dh-forum">
+        <div class="dh-forum__img"><i class="fa-solid fa-handshake"></i></div>
+        <div>
+          <h3 class="dh-forum__name"><a href="#">Afiliaciones</a></h3>
+          <p class="dh-forum__desc">Élites, hermanos y directorios.</p>
+          <ul class="dh-subforums">
+            <li><a href="#">Hermanos</a></li>
+            <li><a href="#">Élite</a></li>
+            <li><a href="#">Normales</a></li>
+          </ul>
+        </div>
+        <div class="dh-forum__stats"><b>31</b>temas<br><b>45</b>mensajes</div>
+        <div class="dh-lastpost">
+          <div class="dh-lastpost__av"></div>
+          <div class="dh-lastpost__info">
+            <a class="dh-lastpost__topic" href="#">Petición de élite</a>
+            <span class="dh-lastpost__by">por <a href="#">Invitado</a> · ayer</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================ ESTADÍSTICAS ============================ -->
+    <div class="dh-box">
+      <h4 class="dh-box__title"><i class="fa-solid fa-chart-simple"></i>El parque esta noche</h4>
+      <div class="dh-stats">
+        <div><b>42</b><span>Usuarios</span></div>
+        <div><b>211</b><span>Temas</span></div>
+        <div><b>1.093</b><span>Mensajes</span></div>
+        <div><b>Eli N.</b><span>Último registro</span></div>
+      </div>
+    </div>
+
+    <div class="dh-box">
+      <h4 class="dh-box__title"><i class="fa-solid fa-eye"></i>Quién sigue dentro</h4>
+      <p class="dh-online">
+        <a class="g-admin" href="#">Ringmaster</a>, <a class="g-staff" href="#">Wendy Hale</a>,
+        <a class="g-purgador" href="#">Marlo Quinn</a>, <a class="g-superviviente" href="#">Eli Navarro</a>
+        y 3 invitados.
+      </p>
+      <p class="dh-legend">
+        <span class="g-admin">● Administración</span>
+        <span class="g-staff">● Moderación</span>
+        <span class="g-purgador">● Purgadores</span>
+        <span class="g-superviviente">● Supervivientes</span>
+        <span class="g-civil">● Civiles</span>
+      </p>
+    </div>
+
+    <div class="dh-box">
+      <h4 class="dh-box__title"><i class="fa-solid fa-link"></i>Afiliados</h4>
+      <div class="dh-affiliates">
+        <a href="#"></a><a href="#"></a>
+        <a href="#"></a><a href="#"></a>
+        <a href="#"></a><a href="#"></a>
+      </div>
+    </div>
+
+    <!-- ====================== VISTA DE TEMA (EJEMPLO) ====================== -->
+    <h2 class="dh-topic__title">Cabina 13
+      <small>La Gran Rueda · Lugares del parque · Trama: Primera hora</small>
+    </h2>
+
+    <article class="dh-post">
+      <aside class="dh-post__profile">
+        <h3 class="dh-post__name"><a href="#">Eli Navarro</a></h3>
+        <p class="dh-post__rank">Superviviente</p>
+        <div class="dh-post__avatar"></div>
+        <ul class="dh-post__fields">
+          <li><span>Edad</span><b>19 años</b></li>
+          <li><span>Rol en el parque</span><b>Operario de la noria</b></li>
+          <li><span>Purgas vividas</span><b>3</b></li>
+          <li><span>Mensajes</span><b>64</b></li>
+        </ul>
+      </aside>
+      <div class="dh-post__main">
+        <div class="dh-post__meta">
+          <span><i class="fa-regular fa-clock"></i> 03:17 · Noche de la Purga</span>
+          <div class="dh-post__actions">
+            <button class="dh-btn"><i class="fa-solid fa-quote-left"></i>Citar</button>
+            <button class="dh-btn dh-btn--primary"><i class="fa-solid fa-reply"></i>Responder</button>
+          </div>
+        </div>
+        <div class="dh-post__content">
+          <p>La cabina crujió al llegar arriba y se detuvo, balanceándose sobre un parque que parecía respirar.
+          Desde allí Eli podía contar las luces que aún funcionaban: el carrusel, la carpa, la caseta de tiro.
+          Y una linterna, abajo, que no debería estar ahí.</p>
+          <p><span class="dh-say">—Si no me muevo, no me ven —</span>se dijo, aunque llevaba tres Purgas sabiendo que eso
+          nunca era verdad.</p>
+          <blockquote>La noria no se detiene sola. Alguien tiene la palanca.</blockquote>
+        </div>
+        <div class="dh-signature">“Las luces se apagan a las siete. Nosotros no.”</div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="dh-footer">
+    Decayed Hours · skin original · Funciona con <a href="https://rolea.es">rolea.es</a>
+  </footer>
+</div>
+</body></html>
