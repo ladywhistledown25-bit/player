@@ -1,58 +1,59 @@
 /* ==========================================================================
    DECAYED HOURS — skin para rolea.es
    La Purga · Parque de diversiones abandonado
-   Modo oscuro con acentos neón contenidos.
+   Slasher grunge: negro sucio, rojo LED de sangre y verde tóxico,
+   como las máscaras de luces de la Purga. El brillo se usa con medida.
 
    Todas las clases llevan el prefijo .dh- para no chocar con las de la
    plataforma. Cambia la paleta desde :root y el resto se ajusta solo.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Oswald:wght@400;500;600&family=Karla:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Special+Elite&family=Oswald:wght@400;500;600&family=Karla:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
   /* Fondos (del más profundo al más elevado) */
-  --dh-bg:        #0b0a0e;
-  --dh-surface:   #131118;
-  --dh-surface-2: #1a1720;
-  --dh-surface-3: #221e2a;
-  --dh-line:      #2c2735;
+  --dh-bg:        #08090a;
+  --dh-surface:   #0f1012;
+  --dh-surface-2: #15161a;
+  --dh-surface-3: #1c1d21;
+  --dh-line:      #2a2b2f;
 
   /* Texto */
-  --dh-text:      #cdc6d3;
-  --dh-text-soft: #9a92a3;
-  --dh-text-mute: #6b6474;
-  --dh-heading:   #ece6f0;
+  --dh-text:      #c8c5bf;
+  --dh-text-soft: #8e8a84;
+  --dh-text-mute: #77736d;
+  --dh-heading:   #ebe7df;
 
-  /* Neón: se usa sólo en logo, títulos de categoría, hover y "nuevo" */
-  --dh-neon:      #ff4f9a;   /* rosa feria */
-  --dh-neon-2:    #4fd8d6;   /* cian bombilla */
-  --dh-warn:      #e9b44c;   /* ámbar sirena (alertas de la Purga) */
+  /* LED de máscara: sólo en logo, títulos de sección, hover y "nuevo" */
+  --dh-neon:      #ff2d3f;   /* rojo LED / sangre */
+  --dh-neon-2:    #8fe03a;   /* verde tóxico */
+  --dh-warn:      #ffd23f;   /* amarillo de peligro (alertas de la Purga) */
 
-  /* Brillos suaves: alfa baja para que acentúen sin cansar la vista */
-  --dh-glow:      0 0 6px rgba(255, 79, 154, .45), 0 0 18px rgba(255, 79, 154, .18);
-  --dh-glow-2:    0 0 6px rgba(79, 216, 214, .40), 0 0 18px rgba(79, 216, 214, .15);
+  /* Brillo de LED: corto y nítido, sin halo grande */
+  --dh-glow:      0 0 3px rgba(255, 45, 63, .7), 0 0 12px rgba(255, 45, 63, .3);
+  --dh-glow-2:    0 0 3px rgba(143, 224, 58, .6), 0 0 12px rgba(143, 224, 58, .22);
 
   /* Tonos derivados (cada modo los redefine) */
-  --dh-tint-1:     rgba(255, 79, 154, .07);
-  --dh-tint-2:     rgba(79, 216, 214, .05);
-  --dh-selection:  rgba(255, 79, 154, .35);
-  --dh-fade-1:     rgba(11, 10, 14, .25);
-  --dh-fade-2:     rgba(11, 10, 14, .7);
-  --dh-header-ph:  linear-gradient(160deg, #1b1424, #0b0a0e);
-  --dh-logo:       #ffd9ea;
-  --dh-nav-bg:     rgba(19, 17, 24, .92);
-  --dh-warn-tint:  rgba(233, 180, 76, .08);
-  --dh-neon-line:  rgba(255, 79, 154, .35);
-  --dh-neon-2-line: rgba(79, 216, 214, .35);
-  --dh-btn-glow:   0 0 10px rgba(255, 79, 154, .2);
-  --dh-ph:         linear-gradient(135deg, #2a2233, #15121a);
-  --dh-ph-icon:    rgba(236, 230, 240, .25);
-  --dh-say:        #ffb3d4;
-  --dh-g-purgador: #d06a6a;
-  --dh-g-superviviente: #8fbf8a;
+  --dh-tint-1:     rgba(255, 45, 63, .06);
+  --dh-tint-2:     rgba(143, 224, 58, .03);
+  --dh-selection:  rgba(255, 45, 63, .35);
+  --dh-fade-1:     rgba(8, 9, 10, .3);
+  --dh-fade-2:     rgba(8, 9, 10, .75);
+  --dh-header-ph:  linear-gradient(160deg, #1c0b0e, #08090a 70%);
+  --dh-logo:       #ff3b4c;
+  --dh-nav-bg:     rgba(15, 16, 18, .92);
+  --dh-warn-tint:  rgba(255, 210, 63, .06);
+  --dh-neon-line:  rgba(255, 45, 63, .4);
+  --dh-neon-2-line: rgba(143, 224, 58, .35);
+  --dh-btn-glow:   0 0 10px rgba(255, 45, 63, .25);
+  --dh-ph:         linear-gradient(135deg, #1f1a1b, #0c0c0e);
+  --dh-ph-icon:    rgba(235, 231, 223, .2);
+  --dh-say:        #ff8590;
+  --dh-g-purgador: #ff5a5a;
+  --dh-g-superviviente: #a6d86a;
 
-  --dh-radius:    6px;
-  --dh-font-logo: 'Monoton', 'Oswald', sans-serif;
+  --dh-radius:    2px;
+  --dh-font-logo: 'Rubik Glitch', 'Oswald', sans-serif;
   --dh-font-head: 'Oswald', 'Arial Narrow', sans-serif;
   --dh-font-body: 'Karla', 'Segoe UI', sans-serif;
   --dh-max:       1100px;
@@ -87,6 +88,14 @@ body { margin: 0; }
 
 .dh-wrap { max-width: var(--dh-max); margin: 0 auto; padding: 0 16px; }
 
+/* Grano sucio sobre toda la página (no bloquea clics) */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .06; mix-blend-mode: overlay;
+}
+:root[data-theme="light"] body::after { opacity: .1; mix-blend-mode: multiply; }
+
 /* --------------------------------------------------------------------------
    Cabecera
    -------------------------------------------------------------------------- */
@@ -99,29 +108,49 @@ body { margin: 0; }
     linear-gradient(180deg, var(--dh-fade-1) 0%, var(--dh-fade-2) 60%, var(--dh-bg) 100%),
     var(--dh-header-img, var(--dh-header-ph)) center / cover no-repeat;
   border-bottom: 1px solid var(--dh-line);
+  overflow: hidden;
 }
-.dh-header__inner { width: 100%; padding: 48px 16px 28px; text-align: center; }
+/* Líneas de pantalla vieja sobre la imagen de cabecera */
+.dh-header::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px);
+}
+:root[data-theme="light"] .dh-header::after { opacity: .25; }
+.dh-header__inner { position: relative; z-index: 1; width: 100%; padding: 48px 16px 28px; text-align: center; }
+
+/* Máscara LED: ojos en cruz y boca cosida */
+.dh-mask {
+  display: block; width: 64px; height: 72px; margin: 0 auto 12px;
+  color: var(--dh-neon);
+  filter: drop-shadow(0 0 3px rgba(255, 45, 63, .8)) drop-shadow(0 0 10px rgba(255, 45, 63, .35));
+  animation: dh-flicker 7s infinite;
+}
+.dh-mask__eyes { animation: dh-blink 11s infinite; }
+:root[data-theme="light"] .dh-mask { filter: none; }
+@keyframes dh-blink { 0%, 96%, 100% { opacity: 1; } 97%, 98% { opacity: .1; } }
 .dh-logo {
   margin: 0;
   font: 400 clamp(34px, 7vw, 68px)/1 var(--dh-font-logo);
   color: var(--dh-logo);
   text-shadow: var(--dh-glow);
-  letter-spacing: .04em;
-  /* Parpadeo de bombilla vieja: muy esporádico, no continuo */
+  letter-spacing: .02em;
+  /* Fallo de LED: parpadeo con salto, muy esporádico */
   animation: dh-flicker 9s infinite;
 }
 .dh-tagline {
   margin: 14px 0 0;
-  font: 400 13px/1.4 var(--dh-font-head);
-  letter-spacing: .35em;
+  font: 400 13px/1.4 'Special Elite', 'Courier New', monospace;
+  letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--dh-text-soft);
 }
 @keyframes dh-flicker {
-  0%, 91%, 93%, 96%, 100% { opacity: 1; }
-  92%, 95% { opacity: .55; text-shadow: none; }
+  0%, 89%, 91%, 94%, 100% { opacity: 1; transform: none; }
+  90% { opacity: .35; transform: translateX(-2px); }
+  92%, 93% { opacity: .7; text-shadow: none; }
+  95% { transform: translateX(1px); }
 }
-@media (prefers-reduced-motion: reduce) { .dh-logo { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .dh-logo, .dh-mask, .dh-mask__eyes { animation: none; } }
 
 /* Navegación */
 .dh-nav {
@@ -152,8 +181,13 @@ body { margin: 0; }
   padding: 14px 18px;
   background: linear-gradient(90deg, var(--dh-warn-tint), transparent 70%), var(--dh-surface);
   border: 1px solid var(--dh-line);
-  border-left: 3px solid var(--dh-warn);
   border-radius: var(--dh-radius);
+  position: relative; overflow: hidden; padding-left: 30px;
+}
+/* Franja de peligro amarilla y negra */
+.dh-alert::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px;
+  background: repeating-linear-gradient(-45deg, var(--dh-warn) 0 6px, #111 6px 12px);
 }
 .dh-alert__icon { color: var(--dh-warn); font-size: 20px; }
 .dh-alert__text { font-size: 14px; color: var(--dh-text-soft); }
@@ -361,8 +395,9 @@ body { margin: 0; }
 
 /* --------------------------------------------------------------------------
    Modo claro: papel hueso envejecido, sin blancos puros.
+   Los LED pasan a tinta: rojo sangre seca y verde musgo.
    Se activa con data-theme="light" en <html> (botón de la barra de menú).
-   El neón se vuelve tinta: mismos tonos, más profundos y sin brillo.
+   
    -------------------------------------------------------------------------- */
 :root[data-theme="light"] {
   --dh-bg:        #e9e2d5;
@@ -376,30 +411,30 @@ body { margin: 0; }
   --dh-text-mute: #736a74;
   --dh-heading:   #26212b;
 
-  --dh-neon:      #b8326a;
-  --dh-neon-2:    #176c69;
-  --dh-warn:      #855610;
+  --dh-neon:      #a3141f;
+  --dh-neon-2:    #4a6a0c;
+  --dh-warn:      #7a5a00;
 
-  --dh-glow:      0 0 1px rgba(184, 50, 106, .25);
-  --dh-glow-2:    0 0 1px rgba(23, 108, 105, .25);
+  --dh-glow:      0 0 1px rgba(163, 20, 31, .3);
+  --dh-glow-2:    0 0 1px rgba(74, 106, 12, .3);
 
-  --dh-tint-1:     rgba(184, 50, 106, .05);
-  --dh-tint-2:     rgba(23, 108, 105, .05);
-  --dh-selection:  rgba(184, 50, 106, .2);
+  --dh-tint-1:     rgba(163, 20, 31, .05);
+  --dh-tint-2:     rgba(74, 106, 12, .04);
+  --dh-selection:  rgba(163, 20, 31, .2);
   --dh-fade-1:     rgba(233, 226, 213, .15);
   --dh-fade-2:     rgba(233, 226, 213, .75);
   --dh-header-ph:  linear-gradient(160deg, #ddd1c0, #e9e2d5);
-  --dh-logo:       #9c2a5a;
+  --dh-logo:       #9e1420;
   --dh-nav-bg:     rgba(242, 236, 225, .94);
-  --dh-warn-tint:  rgba(133, 86, 16, .08);
-  --dh-neon-line:  rgba(184, 50, 106, .4);
-  --dh-neon-2-line: rgba(23, 108, 105, .4);
+  --dh-warn-tint:  rgba(122, 90, 0, .08);
+  --dh-neon-line:  rgba(163, 20, 31, .4);
+  --dh-neon-2-line: rgba(74, 106, 12, .4);
   --dh-btn-glow:   none;
   --dh-ph:         linear-gradient(135deg, #d9cebd, #c9bba6);
   --dh-ph-icon:    rgba(59, 53, 64, .3);
-  --dh-say:        #a02d5e;
-  --dh-g-purgador: #a63f3f;
-  --dh-g-superviviente: #43683f;
+  --dh-say:        #9e1b26;
+  --dh-g-purgador: #a3141f;
+  --dh-g-superviviente: #4a6a0c;
 }
 /* En papel las fotos no necesitan oscurecerse tanto */
 :root[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
@@ -627,7 +662,8 @@ body { margin: 0; }
 :root[data-path^="/scenes/"] .dh-header { min-height: 0; align-items: center; }
 :root[data-path^="/scenes/"] .dh-header__inner { padding: 14px 16px; text-align: left; }
 :root[data-path^="/scenes/"] .dh-logo { font-size: 22px; }
-:root[data-path^="/scenes/"] .dh-tagline { display: none; }
+:root[data-path^="/scenes/"] .dh-tagline,
+:root[data-path^="/scenes/"] .dh-mask { display: none; }
 :root[data-path^="/scenes/"] .dh-header .dh-theme-toggle { top: 50%; transform: translateY(-50%); }
 
 /* Los bloques insertados (.html-inject) ocupan todo el ancho */

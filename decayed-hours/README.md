@@ -10,22 +10,26 @@ Skin oscura con acentos neón para un foro de rol de La Purga ambientado en un p
 
 ## Paleta
 
-- Fondos: `#0b0a0e` → `#131118` → `#1a1720` → `#221e2a`
-- Texto: `#cdc6d3` (normal), `#9a92a3` (secundario), `#ece6f0` (títulos)
-- Neón rosa `#ff4f9a`: administración, botones, indicador de mensajes nuevos
-- Neón cian `#4fd8d6`: lugares del parque, citas
-- Ámbar `#e9b44c`: aviso y reloj de la Purga
+Estética slasher y grunge con toques cyberpunk: las máscaras de LED de la Purga (ojos en cruz, bocas cosidas) sobre negro sucio.
 
-**Modo oscuro** (por defecto). El brillo sólo aparece en el logo, la línea bajo cada categoría, el punto de "nuevo" y al pasar el ratón; el resto es mate.
+**Modo oscuro** (por defecto):
 
-**Modo claro** (botón «Modo claro» en la barra de menú; se guarda la elección de cada usuario):
+- Fondos: `#08090a` → `#0f1012` → `#15161a` → `#1c1d21`, con grano de textura encima
+- Texto: `#c8c5bf` (normal), `#8e8a84` (secundario), `#ebe7df` (títulos)
+- Rojo LED `#ff2d3f`: logo, máscara, botones, secciones principales, mensajes nuevos
+- Verde tóxico `#8fe03a`: lugares, widgets laterales
+- Amarillo de peligro `#ffd23f`: aviso y reloj de la Purga, con franja amarilla y negra
+- Logo en Rubik Glitch con parpadeo de LED averiado (se desactiva si el sistema pide reducir animaciones); lema en Special Elite, de máquina de escribir
+
+El brillo sólo aparece en el logo, la máscara, las líneas bajo los títulos, el punto de "nuevo" y al pasar el ratón.
+
+**Modo claro** (botón en la cabecera; se guarda la elección de cada usuario):
 
 - Fondos color hueso: `#e9e2d5` → `#f2ece1` → `#ebe3d5` → `#e0d6c5`, nunca blanco puro
 - Texto: `#3b3540` (normal), `#5f5765` (secundario), `#26212b` (títulos)
-- Los neones pasan a tonos tinta sin brillo: rosa `#b8326a`, cian `#176c69`, ámbar `#855610`
-- Las fotos llevan un leve tono sepia
+- Los LED pasan a tinta sin brillo: rojo sangre seca `#a3141f`, verde musgo `#4a6a0c`, ocre `#7a5a00`
 
-El modo claro está definido en el bloque `.dh-body[data-theme="light"]` de `skin.css`. Si la plataforma no permite JavaScript, el botón no funcionará y el foro se queda en modo oscuro.
+El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.css`.
 
 ## Cómo instalarlo en rolea.es
 
