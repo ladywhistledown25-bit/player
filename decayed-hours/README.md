@@ -44,7 +44,9 @@ El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.c
 
 «Antes de la página» y «Después de la página» quedan vacíos.
 
-`skin.css` también viste las piezas propias de rolea.es (barra lateral, lista de escenas, filtros, estadísticas, facciones, widgets de Lugares y Equipo, pie y aviso de cookies), a partir del HTML de la portada con el diseño moderno. Otras páginas (escena abierta, ficha de personaje, foro, documentación) y el diseño clásico usan otras clases y quedan pendientes.
+**Toda la plataforma:** `skin.css` redefine las variables de diseño de rolea.es (`--color-*` y `--font-family-*`) con la paleta y las fuentes de la skin, así que se tiñen todas las páginas, también las que no tienen reglas propias. Además hay reglas concretas para la barra lateral, la lista de escenas, filtros, estadísticas, facciones, widgets, pie y aviso de cookies.
+
+**Escenas** (`data-route="scene"`): diseño inmersivo. De fondo va la foto del lugar de la escena, oscurecida y difuminada; `javascript.js` la busca sola en la página del lugar. Si quieres otra imagen para un lugar, añádela en `PLACE_IMAGES` dentro de `javascript.js`. El texto va en letra Crimson Pro sobre un panel translúcido con el borde del color de la facción, la primera letra de cada respuesta en rojo LED, el retrato con líneas de pantalla y una cruz entre respuestas. La cabecera de la skin se reduce a una barra fina.
 
 `template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 

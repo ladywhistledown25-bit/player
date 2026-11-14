@@ -8,7 +8,7 @@
    plataforma. Cambia la paleta desde :root y el resto se ajusta solo.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Special+Elite&family=Oswald:wght@400;500;600&family=Karla:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Special+Elite&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Oswald:wght@400;500;600&family=Karla:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
   /* Fondos (del más profundo al más elevado) */
@@ -459,6 +459,57 @@ body::after {
    los estilos base de la plataforma.
    ========================================================================== */
 
+/* Variables de diseño de rolea.es → paleta de la skin.
+   Así se tiñen todas las páginas de la plataforma (fichas, documentación,
+   foro…), también las que no tienen reglas propias aquí abajo. */
+:root {
+  --dh-on-neon: #160406;
+  --dh-line-strong: #3a3b40;
+
+  --font-family-sans: 'Karla', 'Segoe UI', sans-serif !important;
+  --font-family-serif: 'Oswald', 'Arial Narrow', sans-serif !important;
+  --font-family-serif-body: 'Crimson Pro', Georgia, serif !important;
+
+  --scheme-dark: 1 !important;
+  --color-primary: var(--dh-neon) !important;
+  --color-on-primary: var(--dh-on-neon) !important;
+  --color-secondary: var(--dh-text-mute) !important;
+  --color-accent: var(--dh-neon) !important;
+  --color-on-accent: var(--dh-on-neon) !important;
+  --color-highlight: var(--dh-neon-2) !important;
+  --color-bg-page: var(--dh-bg) !important;
+  --color-bg-surface: var(--dh-surface) !important;
+  --color-bg-subtle: var(--dh-surface-2) !important;
+  --color-bg-muted: var(--dh-surface-3) !important;
+  --color-bg-elevated: var(--dh-surface-2) !important;
+  --color-bg-inverse: var(--dh-heading) !important;
+  --color-text-primary: var(--dh-text) !important;
+  --color-text-secondary: var(--dh-text-soft) !important;
+  --color-text-tertiary: var(--dh-text-mute) !important;
+  --color-text-disabled: var(--dh-text-mute) !important;
+  --color-text-inverse: var(--dh-bg) !important;
+  --color-text-link: var(--dh-text-soft) !important;
+  --color-text-link-hover: var(--dh-neon) !important;
+  --color-content-link: var(--dh-neon-2) !important;
+  --color-content-link-hover: var(--dh-heading) !important;
+  --color-content-link-visited: var(--dh-text-soft) !important;
+  --color-border: var(--dh-line) !important;
+  --color-border-subtle: var(--dh-surface-3) !important;
+  --color-border-strong: var(--dh-line-strong) !important;
+  --color-focus: var(--dh-neon) !important;
+  --color-shadow: #000 !important;
+  --color-sidebar-bg: var(--dh-surface) !important;
+  --color-sidebar-text: var(--dh-text) !important;
+  --color-success: var(--dh-neon-2) !important;
+  --color-warning: var(--dh-warn) !important;
+  --color-danger: var(--dh-neon) !important;
+}
+:root[data-theme="light"] {
+  --dh-on-neon: #f2ece1;
+  --dh-line-strong: #bfb39f;
+  --scheme-dark: 0 !important;
+}
+
 /* Color del navegador (barras de scroll, formularios) según el modo */
 :root { color-scheme: dark !important; }
 :root[data-theme="light"] { color-scheme: light !important; }
@@ -497,7 +548,7 @@ body::after {
   color: var(--dh-text-soft) !important;
 }
 .sidebar__header { border-bottom: 1px solid var(--dh-line) !important; }
-.sidebar__logo { color: var(--dh-neon) !important; filter: drop-shadow(0 0 4px var(--dh-neon-line)); }
+.sidebar__logo { color: var(--dh-neon) !important; }
 .sidebar__appName {
   font-family: var(--dh-font-head) !important; letter-spacing: .12em; text-transform: uppercase;
   color: var(--dh-heading) !important;
@@ -526,6 +577,11 @@ body::after {
   font-family: var(--dh-font-head) !important; letter-spacing: .12em; text-transform: uppercase;
 }
 .sidebar__newSceneButton:not(:disabled):hover { box-shadow: var(--dh-btn-glow); }
+.sidebar__registerButton {
+  background: transparent !important; color: var(--dh-heading) !important;
+  border: 1px solid var(--dh-neon) !important; box-shadow: none !important;
+}
+.sidebar__registerButton:hover { box-shadow: var(--dh-btn-glow) !important; }
 .sidebar__newSceneButton--disabled { opacity: .45; border-color: var(--dh-line) !important; }
 .characterSwitcher__trigger {
   background: var(--dh-surface-2) !important; color: var(--dh-text) !important;
@@ -582,11 +638,6 @@ body::after {
 
 /* ---------- Estadísticas de la portada ---------- */
 .stats { color: var(--dh-text) !important; }
-.stats__card, .stats__secondary {
-  background: var(--dh-surface) !important;
-  border: 1px solid var(--dh-line) !important;
-  border-radius: var(--dh-radius) !important;
-}
 .stats__label, .stats__sectionLabel {
   font: 500 11px/1.2 var(--dh-font-head) !important; letter-spacing: .18em !important; text-transform: uppercase;
   color: var(--dh-text-mute) !important;
@@ -655,7 +706,8 @@ body::after {
 /* Los nombres llevan el color de su facción: en modo oscuro se aclaran
    un poco para que los colores oscuros (p. ej. el azul de Rotten Carnival) se lean */
 :root:not([data-theme="light"]) .sceneList__lastActivityName,
-:root:not([data-theme="light"]) .stats__chipName { filter: brightness(1.7) saturate(.85); }
+:root:not([data-theme="light"]) .stats__chipName,
+:root:not([data-theme="light"]) .stats__factionName { filter: brightness(1.7) saturate(.85); }
 
 /* Escenas abiertas (/scenes/…): cabecera reducida a una barra fina para que
    la escena ocupe la pantalla; el botón de modo sigue disponible */
@@ -668,6 +720,169 @@ body::after {
 
 /* Los bloques insertados (.html-inject) ocupan todo el ancho */
 .html-inject .dh-header { border-radius: 0 0 var(--dh-radius) var(--dh-radius); }
+
+/* ==========================================================================
+   ESCENA INMERSIVA (/scenes/…)
+   Fondo con la foto del lugar (la pone javascript.js en --dh-scene-bg),
+   texto en columna de lectura sobre un panel translúcido.
+   ========================================================================== */
+:root[data-route="scene"] { --dh-read: 'Crimson Pro', Georgia, serif; }
+
+/* Foto del lugar a pantalla completa, oscurecida y algo difuminada */
+:root[data-route="scene"] body::before {
+  content: ""; position: fixed; inset: -12px; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 35%, transparent 35%, rgba(0, 0, 0, .65) 100%),
+    var(--dh-scene-bg, none) center / cover no-repeat;
+  filter: brightness(.3) saturate(.65) blur(3px);
+}
+:root[data-route="scene"][data-theme="light"] body::before { filter: sepia(.45) brightness(1.05) blur(3px); opacity: .28; }
+/* El fondo pasa al <html> para que el body deje ver la foto */
+:root[data-route="scene"] { background: var(--dh-bg) !important; }
+:root[data-route="scene"] body { background: transparent !important; }
+
+/* Cabecera de la escena */
+:root[data-route="scene"] .sceneView__breadcrumb,
+:root[data-route="scene"] .sceneView__breadcrumbLink,
+:root[data-route="scene"] .sceneView__breadcrumbCurrent {
+  font: 500 11px/1.4 var(--dh-font-head) !important; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--dh-text-mute) !important; text-decoration: none !important;
+}
+:root[data-route="scene"] .sceneView__breadcrumbLink:hover { color: var(--dh-neon) !important; }
+:root[data-route="scene"] .sceneView__title {
+  font: 600 clamp(28px, 4.2vw, 46px)/1.05 var(--dh-font-head) !important;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--dh-heading) !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .7);
+}
+:root[data-route="scene"] .sceneView__titleSection { position: relative; padding-bottom: 12px; }
+:root[data-route="scene"] .sceneView__titleSection::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 64px; height: 2px;
+  background: var(--dh-neon); box-shadow: var(--dh-glow);
+}
+:root[data-route="scene"] .sceneView__placeInfo,
+:root[data-route="scene"] .sceneView__placeLink {
+  color: var(--dh-neon-2) !important; text-decoration: none !important;
+  font: 500 13px/1.4 var(--dh-font-head) !important; letter-spacing: .14em; text-transform: uppercase;
+}
+:root[data-route="scene"] .sceneView__description {
+  max-width: 68ch;
+  font: italic 18px/1.7 var(--dh-read) !important;
+  color: var(--dh-text-soft) !important;
+  border-left: 2px solid var(--dh-neon); padding-left: 16px;
+}
+:root[data-route="scene"] .sceneList__typeBadge {
+  background: var(--dh-surface-2) !important; color: var(--dh-text-soft) !important;
+  border: 1px solid var(--dh-line) !important;
+  font-family: var(--dh-font-head) !important; letter-spacing: .14em;
+}
+
+/* Panel de datos: cristal oscuro */
+:root[data-route="scene"] .sceneMetaPanel__card {
+  background: color-mix(in srgb, var(--dh-surface) 72%, transparent) !important;
+  backdrop-filter: blur(6px);
+}
+:root[data-route="scene"] .sceneMetaPanel__card *,
+:root[data-route="scene"] .sceneMetaPanel__dateRow,
+:root[data-route="scene"] .sceneMetaPanel__statsGrid,
+:root[data-route="scene"] .sceneMetaPanel__statCell,
+:root[data-route="scene"] .sceneMetaPanel__writersRow { border-color: var(--dh-line) !important; }
+:root[data-route="scene"] .sceneMetaPanel__dateCellLabel,
+:root[data-route="scene"] .sceneMetaPanel__statCellLabel,
+:root[data-route="scene"] .sceneMetaPanel__sceneMasterLabel,
+:root[data-route="scene"] .sceneMetaPanel__participantsLabel {
+  font: 500 10.5px/1.3 var(--dh-font-head) !important; letter-spacing: .2em !important; text-transform: uppercase;
+  color: var(--dh-text-mute) !important;
+}
+:root[data-route="scene"] .sceneMetaPanel__statCellValue,
+:root[data-route="scene"] .sceneMetaPanel__dateCellValue {
+  font-family: var(--dh-font-head) !important; color: var(--dh-heading) !important;
+}
+:root[data-route="scene"] .sceneMetaPanel__statCellValue { font-size: 22px !important; }
+:root[data-route="scene"] .sceneMetaPanel svg { color: var(--dh-neon); opacity: .8; }
+
+/* Historia */
+:root[data-route="scene"] .sceneReplyList { background: transparent !important; border-color: var(--dh-line) !important; }
+:root[data-route="scene"] .sceneReplyList__title {
+  font: 600 18px/1.2 var(--dh-font-head) !important; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--dh-heading) !important;
+}
+:root[data-route="scene"] .sceneReplyList__title svg { color: var(--dh-neon); }
+:root[data-route="scene"] .sceneReplyList__count {
+  font: 400 12px var(--dh-font-body) !important; letter-spacing: .05em; text-transform: none;
+  color: var(--dh-text-mute) !important;
+}
+
+/* Cada respuesta: sin caja; el texto va sobre un panel translúcido */
+:root[data-route="scene"] .sceneReplyCard {
+  background: transparent !important; border: 0 !important; box-shadow: none !important;
+}
+:root[data-route="scene"] .sceneReplyCard__main {
+  background: color-mix(in srgb, var(--dh-bg) 78%, transparent) !important;
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--dh-line) !important;
+  border-left: 2px solid color-mix(in srgb, var(--faction-color, var(--dh-neon)) 65%, #fff) !important;
+  border-radius: var(--dh-radius) !important;
+  padding: 18px 28px 22px !important;
+}
+:root[data-route="scene"][data-theme="light"] .sceneReplyCard__main {
+  border-left-color: var(--faction-color, var(--dh-neon)) !important;
+}
+
+/* Retrato con líneas de pantalla; recupera el color al pasar el ratón */
+:root[data-route="scene"] .sceneReplyCard__avatar { position: relative; }
+:root[data-route="scene"] .sceneReplyCard__avatar .avatar {
+  border-radius: 2px !important; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--dh-line), 0 14px 40px rgba(0, 0, 0, .55);
+  filter: grayscale(.35) contrast(1.05);
+  transition: filter .4s;
+}
+:root[data-route="scene"] .sceneReplyCard:hover .sceneReplyCard__avatar .avatar { filter: none; }
+:root[data-route="scene"] .sceneReplyCard__avatar::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .18) 0 1px, transparent 1px 3px);
+}
+:root[data-route="scene"][data-theme="light"] .sceneReplyCard__avatar::after { opacity: .3; }
+:root[data-route="scene"] .sceneReplyCard__authorName {
+  font: 600 16px/1.2 var(--dh-font-head) !important; letter-spacing: .12em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--faction-color, var(--dh-heading)) 50%, #fff) !important;
+}
+:root[data-route="scene"][data-theme="light"] .sceneReplyCard__authorName { color: var(--faction-color, var(--dh-heading)) !important; }
+:root[data-route="scene"] .sceneReplyCard__authorFaction {
+  font: 500 10.5px/1.3 var(--dh-font-head) !important; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--dh-text-mute) !important;
+}
+
+:root[data-route="scene"] .sceneReplyCard__header { border-bottom: 1px dashed var(--dh-line) !important; padding-bottom: 8px; margin-bottom: 14px; }
+:root[data-route="scene"] .sceneReplyCard__date,
+:root[data-route="scene"] .sceneReplyCard__wordCount,
+:root[data-route="scene"] .sceneReplyCard__permalink {
+  font: 400 12px var(--dh-font-body) !important; color: var(--dh-text-mute) !important; text-decoration: none !important;
+}
+:root[data-route="scene"] .sceneReplyCard__permalink:hover { color: var(--dh-neon) !important; }
+
+/* Texto de la escena: letra de novela, columna cómoda */
+:root[data-route="scene"] .sceneReplyCard__content {
+  font: 400 19px/1.8 var(--dh-read) !important;
+  color: color-mix(in srgb, var(--dh-text) 85%, #fff) !important;
+  max-width: 70ch;
+}
+:root[data-route="scene"][data-theme="light"] .sceneReplyCard__content { color: var(--dh-text) !important; }
+:root[data-route="scene"] .sceneReplyCard__content p { margin: 0 0 1.1em; }
+/* Primera letra de cada respuesta en rojo LED */
+:root[data-route="scene"] .sceneReplyCard__content > p:first-child::first-letter {
+  float: left; margin: .06em .14em 0 0;
+  font: 600 3.3em/.85 var(--dh-font-head);
+  color: var(--dh-neon); text-shadow: var(--dh-glow);
+}
+
+/* Separador entre respuestas: línea con una cruz */
+:root[data-route="scene"] .sceneReplyList__entry + .sceneReplyList__entry { position: relative; margin-top: 56px; }
+:root[data-route="scene"] .sceneReplyList__entry + .sceneReplyList__entry::before {
+  content: "✕"; position: absolute; left: 0; right: 0; top: -40px;
+  text-align: center; font: 14px/1 var(--dh-font-head); color: var(--dh-neon); text-shadow: var(--dh-glow);
+  background: linear-gradient(90deg, transparent 10%, var(--dh-line) 45%, transparent 47%, transparent 53%, var(--dh-line) 55%, transparent 90%) center / 100% 1px no-repeat;
+}
 
 /* --------------------------------------------------------------------------
    Responsive
