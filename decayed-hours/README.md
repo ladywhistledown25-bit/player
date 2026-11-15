@@ -22,7 +22,6 @@ Terror de feria abandonada, a juego con la imagen de cabecera: noche con niebla 
 
 **Modo claro** (botón en la cabecera; se guarda la elección de cada usuario):
 
-- Fondos color hueso: `#e9e2d5` → `#f2ece1` → `#ebe3d5` → `#e0d6c5`, nunca blanco puro
 - Texto: `#3b3540` (normal), `#5f5765` (secundario), `#26212b` (títulos)
 - Fondos hueso con un velo verde grisáceo: `#e7e3d7` → `#f1eee4` → `#e9e5d9` → `#ddd8ca`
 - Acentos en tinta, sin brillo: rojo de lona vieja `#8e1c22`, verde cardenillo `#2f6359`, ámbar de farol `#7d5a10`
