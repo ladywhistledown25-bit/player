@@ -152,4 +152,35 @@
 
   queue();
   new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+
+  // Diagnóstico: añade ?dhdebug al final del enlace de la página y aparece
+  // un recuadro con lo que el script encontró. Sirve para enviar una captura.
+  if (location.search.indexOf('dhdebug') !== -1) {
+    var log = [];
+    var describe = function (el) {
+      var out = [];
+      for (var k = 0; el && k < 7; k++, el = el.parentElement) {
+        var c = typeof el.className === 'string' ? el.className.trim().split(/\s+/).slice(0, 2).join('.') : '';
+        var ce = el.getAttribute('contenteditable');
+        out.push(el.tagName.toLowerCase() + (c ? '.' + c : '') + (ce !== null ? '[ce=' + ce + ']' : ''));
+      }
+      return out.join(' < ');
+    };
+    var report = function (when) {
+      var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), found = 0;
+      while (w.nextNode()) {
+        var n = w.currentNode;
+        if (n.data.indexOf('foto') === -1 || !n.parentElement || n.parentElement.closest('#dh-debug')) continue;
+        found++;
+        log.push(when + ' · texto: "' + n.data.slice(0, 60) + '"\n   en: ' + describe(n.parentElement));
+      }
+      log.push(when + ' · fotos ya convertidas: ' + document.querySelectorAll('.dh-foto').length + ' · textos con "foto": ' + found);
+      var box = document.getElementById('dh-debug') || document.body.appendChild(document.createElement('pre'));
+      box.id = 'dh-debug';
+      box.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;z-index:99999;max-height:45vh;overflow:auto;margin:0;padding:10px;font:12px/1.4 monospace;white-space:pre-wrap;background:#111;color:#9f9;border:1px solid #9f9';
+      box.textContent = 'DECAYED HOURS · diagnóstico de [foto]\n' + log.join('\n');
+    };
+    setTimeout(function () { report('1s'); }, 1000);
+    setTimeout(function () { report('4s'); }, 4000);
+  }
 })();
