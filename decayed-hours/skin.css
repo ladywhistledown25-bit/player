@@ -1,8 +1,9 @@
 /* ==========================================================================
    DECAYED HOURS — skin para rolea.es
    La Purga · Parque de diversiones abandonado
-   Slasher grunge: negro sucio, rojo LED de sangre y verde tóxico,
-   como las máscaras de luces de la Purga. El brillo se usa con medida.
+   Terror de feria abandonada, a juego con la imagen de cabecera: negro con
+   niebla verde azulada, rojo óxido de lona vieja, ámbar de farol y textos
+   color hueso. El brillo se usa con medida.
 
    Todas las clases llevan el prefijo .dh- para no chocar con las de la
    plataforma. Cambia la paleta desde :root y el resto se ajusta solo.
@@ -12,45 +13,45 @@
 
 :root {
   /* Fondos (del más profundo al más elevado) */
-  --dh-bg:        #08090a;
-  --dh-surface:   #0f1012;
-  --dh-surface-2: #15161a;
-  --dh-surface-3: #1c1d21;
-  --dh-line:      #2a2b2f;
+  --dh-bg:        #070b0a;
+  --dh-surface:   #0d1312;
+  --dh-surface-2: #121a18;
+  --dh-surface-3: #18221f;
+  --dh-line:      #25302c;
 
   /* Texto */
-  --dh-text:      #c8c5bf;
-  --dh-text-soft: #8e8a84;
-  --dh-text-mute: #77736d;
-  --dh-heading:   #ebe7df;
+  --dh-text:      #cfc8b6;
+  --dh-text-soft: #959b90;
+  --dh-text-mute: #778077;
+  --dh-heading:   #ebe3cc;
 
   /* LED de máscara: sólo en logo, títulos de sección, hover y "nuevo" */
-  --dh-neon:      #ff2d3f;   /* rojo LED / sangre */
-  --dh-neon-2:    #8fe03a;   /* verde tóxico */
-  --dh-warn:      #ffd23f;   /* amarillo de peligro (alertas de la Purga) */
+  --dh-neon:      #d95a47;   /* rojo óxido, de las lonas viejas */
+  --dh-neon-2:    #6fb7a5;   /* verde cardenillo, de la niebla */
+  --dh-warn:      #e2a94c;   /* ámbar de farol (alertas de la Purga) */
 
   /* Brillo de LED: corto y nítido, sin halo grande */
-  --dh-glow:      0 0 3px rgba(255, 45, 63, .7), 0 0 12px rgba(255, 45, 63, .3);
-  --dh-glow-2:    0 0 3px rgba(143, 224, 58, .6), 0 0 12px rgba(143, 224, 58, .22);
+  --dh-glow:      0 0 3px rgba(217, 90, 71, .55), 0 0 12px rgba(217, 90, 71, .2);
+  --dh-glow-2:    0 0 3px rgba(111, 183, 165, .5), 0 0 12px rgba(111, 183, 165, .18);
 
   /* Tonos derivados (cada modo los redefine) */
-  --dh-tint-1:     rgba(255, 45, 63, .06);
-  --dh-tint-2:     rgba(143, 224, 58, .03);
-  --dh-selection:  rgba(255, 45, 63, .35);
-  --dh-fade-1:     rgba(8, 9, 10, .3);
-  --dh-fade-2:     rgba(8, 9, 10, .75);
-  --dh-header-ph:  linear-gradient(160deg, #1c0b0e, #08090a 70%);
-  --dh-logo:       #ff3b4c;
-  --dh-nav-bg:     rgba(15, 16, 18, .92);
-  --dh-warn-tint:  rgba(255, 210, 63, .06);
-  --dh-neon-line:  rgba(255, 45, 63, .4);
-  --dh-neon-2-line: rgba(143, 224, 58, .35);
-  --dh-btn-glow:   0 0 10px rgba(255, 45, 63, .25);
-  --dh-ph:         linear-gradient(135deg, #1f1a1b, #0c0c0e);
-  --dh-ph-icon:    rgba(235, 231, 223, .2);
-  --dh-say:        #ff8590;
-  --dh-g-purgador: #ff5a5a;
-  --dh-g-superviviente: #a6d86a;
+  --dh-tint-1:     rgba(111, 183, 165, .06);
+  --dh-tint-2:     rgba(226, 169, 76, .035);
+  --dh-selection:  rgba(217, 90, 71, .35);
+  --dh-fade-1:     rgba(7, 11, 10, .3);
+  --dh-fade-2:     rgba(7, 11, 10, .75);
+  --dh-header-ph:  linear-gradient(160deg, #10201d, #070b0a 70%);
+  --dh-logo:       #d95a47;
+  --dh-nav-bg:     rgba(13, 19, 18, .92);
+  --dh-warn-tint:  rgba(226, 169, 76, .06);
+  --dh-neon-line:  rgba(217, 90, 71, .4);
+  --dh-neon-2-line: rgba(111, 183, 165, .35);
+  --dh-btn-glow:   0 0 10px rgba(217, 90, 71, .22);
+  --dh-ph:         linear-gradient(135deg, #17201d, #0b100f);
+  --dh-ph-icon:    rgba(235, 227, 204, .2);
+  --dh-say:        #e8907f;
+  --dh-g-purgador: #e0614f;
+  --dh-g-superviviente: #94c7a3;
 
   --dh-radius:    2px;
   --dh-font-logo: 'Rubik Glitch', 'Oswald', sans-serif;
@@ -160,7 +161,7 @@ body::after {
 .dh-mask {
   display: block; width: 64px; height: 72px; margin: 0 auto 12px;
   color: var(--dh-neon);
-  filter: drop-shadow(0 0 3px rgba(255, 45, 63, .8)) drop-shadow(0 0 10px rgba(255, 45, 63, .35));
+  filter: drop-shadow(0 0 3px rgba(217, 90, 71, .8)) drop-shadow(0 0 10px rgba(217, 90, 71, .35));
   animation: dh-flicker 7s infinite;
 }
 .dh-mask__eyes { animation: dh-blink 11s infinite; }

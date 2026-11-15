@@ -10,24 +10,22 @@ Skin oscura con acentos neón para un foro de rol de La Purga ambientado en un p
 
 ## Paleta
 
-Estética slasher y grunge con toques cyberpunk: las máscaras de LED de la Purga (ojos en cruz, bocas cosidas) sobre negro sucio.
+Terror de feria abandonada, a juego con la imagen de cabecera: noche con niebla verde azulada, bombillas ámbar, lonas de rojo desvaído y letras color hueso.
 
 **Modo oscuro** (por defecto):
 
-- Fondos: `#08090a` → `#0f1012` → `#15161a` → `#1c1d21`, con grano de textura encima
-- Texto: `#c8c5bf` (normal), `#8e8a84` (secundario), `#ebe7df` (títulos)
-- Rojo LED `#ff2d3f`: logo, máscara, botones, secciones principales, mensajes nuevos
-- Verde tóxico `#8fe03a`: lugares, widgets laterales
-- Amarillo de peligro `#ffd23f`: aviso y reloj de la Purga, con franja amarilla y negra
-- Logo en Rubik Glitch con parpadeo de LED averiado (se desactiva si el sistema pide reducir animaciones); lema en Special Elite, de máquina de escribir
-
-El brillo sólo aparece en el logo, la máscara, las líneas bajo los títulos, el punto de "nuevo" y al pasar el ratón.
+- Fondos: `#070b0a` → `#0d1312` → `#121a18` → `#18221f`, con un leve resplandor verde azulado y grano de textura
+- Texto color hueso: `#cfc8b6` (normal), `#959b90` (secundario), `#ebe3cc` (títulos)
+- Rojo óxido `#d95a47`: botones, títulos de sección, primera letra de las respuestas
+- Verde cardenillo `#6fb7a5`: lugares, widgets laterales
+- Ámbar de farol `#e2a94c`: aviso y reloj de la Purga
 
 **Modo claro** (botón en la cabecera; se guarda la elección de cada usuario):
 
 - Fondos color hueso: `#e9e2d5` → `#f2ece1` → `#ebe3d5` → `#e0d6c5`, nunca blanco puro
 - Texto: `#3b3540` (normal), `#5f5765` (secundario), `#26212b` (títulos)
-- Los LED pasan a tinta sin brillo: rojo sangre seca `#a3141f`, verde musgo `#4a6a0c`, ocre `#7a5a00`
+- Fondos hueso con un velo verde grisáceo: `#e7e3d7` → `#f1eee4` → `#e9e5d9` → `#ddd8ca`
+- Acentos en tinta, sin brillo: rojo de lona vieja `#8e1c22`, verde cardenillo `#2f6359`, ámbar de farol `#7d5a10`
 
 El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.css`.
 
