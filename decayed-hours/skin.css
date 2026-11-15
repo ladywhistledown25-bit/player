@@ -908,6 +908,28 @@ body::after {
   color: var(--dh-text-mute) !important;
 }
 
+/* Estandarte del personaje sobre cada respuesta (diseño de respuestas
+   moderno). rolea.es lo deja en una franja de 168 px (96 px en móvil) y
+   corta mucho la imagen; aquí se agranda. Ajusta altura y encuadre:
+   --dh-reply-banner-pos: center | top | bottom | right | "70% 40%"… */
+:root {
+  --dh-reply-banner-h: 300px;
+  --dh-reply-banner-h-mobile: 150px;
+  --dh-reply-banner-pos: center;
+}
+.sceneReplyCard--modern .sceneReplyCard__frame { --reply-banner-height: var(--dh-reply-banner-h) !important; }
+@media (max-width: 768px) {
+  .sceneReplyCard--modern .sceneReplyCard__frame { --reply-banner-height: var(--dh-reply-banner-h-mobile) !important; }
+}
+.sceneReplyCard--modern .sceneReplyCard__bannerImage { object-position: var(--dh-reply-banner-pos) !important; }
+/* Se funde hacia el texto, con líneas de pantalla */
+.sceneReplyCard--modern .sceneReplyCard__banner[data-has-image="true"]::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--dh-bg) 85%, transparent)),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .18) 0 1px, transparent 1px 3px);
+}
+
 /* Cada respuesta: sin caja; el texto va sobre un panel translúcido */
 :root[data-route="scene"] .sceneReplyCard {
   background: transparent !important; border: 0 !important; box-shadow: none !important;
