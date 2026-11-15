@@ -727,9 +727,10 @@ body::after {
    última actividad. Las fotos ya no ocupan todo el ancho.
    ========================================================================== */
 :root {
-  /* Tamaño de la miniatura de cada lugar: cámbialo aquí */
-  --dh-place-thumb-w: 140px;
-  --dh-place-thumb-h: 90px;
+  /* Tamaño de la foto de cada lugar: cámbialo aquí.
+     La foto llena el hueco y se recorta lo que sobre. */
+  --dh-place-thumb-w: 220px;
+  --dh-place-thumb-h: 120px;
 }
 .classicPlaces__category { overflow: hidden; }
 .classicPlaces__categoryHeader { border-bottom: 1px solid var(--dh-line) !important; position: relative; }
@@ -746,27 +747,34 @@ body::after {
   display: grid !important;
   grid-template-columns: var(--dh-place-thumb-w) minmax(0, 1fr);
   gap: 18px; align-items: center;
-  padding: 14px 16px !important;
+  padding: 0 16px 0 0 !important;
+  min-height: var(--dh-place-thumb-h);
   border-top: 1px solid var(--dh-line) !important;
   transition: background .25s, box-shadow .25s;
 }
 .classicPlaces__row:first-child { border-top: 0 !important; }
 .classicPlaces__row:hover { background: var(--dh-surface-2) !important; box-shadow: inset 2px 0 0 var(--dh-neon-2); }
 
-/* Miniatura con líneas de pantalla; recupera el color al pasar el ratón */
+/* Foto a toda la altura de la fila, pegada al borde, que se funde hacia el
+   texto; líneas de pantalla encima y color al pasar el ratón */
 .classicPlaces__rowIcon {
-  position: relative;
-  width: var(--dh-place-thumb-w) !important; height: var(--dh-place-thumb-h) !important; max-width: none !important;
+  position: relative; align-self: stretch;
+  width: var(--dh-place-thumb-w) !important; height: auto !important;
+  min-height: var(--dh-place-thumb-h); max-width: none !important;
   margin: 0 !important; aspect-ratio: auto !important;
-  border: 1px solid var(--dh-line); border-radius: 2px; overflow: hidden;
+  border: 0 !important; border-radius: 0 !important; overflow: hidden;
   background: var(--dh-ph);
+  -webkit-mask-image: linear-gradient(90deg, #000 65%, transparent);
+          mask-image: linear-gradient(90deg, #000 65%, transparent);
 }
 .classicPlaces__rowIcon::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .2) 0 1px, transparent 1px 3px);
 }
 .classicPlaces__rowImage {
-  width: 100% !important; height: 100% !important; object-fit: cover;
+  position: absolute; inset: 0;
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  object-fit: cover; object-position: center;
   filter: grayscale(.55) brightness(.75) contrast(1.05);
   transition: filter .35s, transform .6s;
 }
@@ -800,8 +808,8 @@ body::after {
 }
 
 @media (max-width: 760px) {
-  .classicPlaces__row { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
-  .classicPlaces__rowIcon { width: 76px !important; height: 76px !important; }
+  .classicPlaces__row { grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding: 0 12px 0 0 !important; min-height: 110px; }
+  .classicPlaces__rowIcon { width: 110px !important; min-height: 110px; }
   .classicPlaces__rowBody { grid-template-columns: auto auto 1fr; gap: 6px 14px; }
   .classicPlaces__rowContent { grid-column: 1 / -1; }
   .classicPlaces__rowStats { flex-direction: row; gap: 4px; align-items: baseline; }
