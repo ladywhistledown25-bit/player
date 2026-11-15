@@ -26,27 +26,27 @@
   --dh-heading:   #ebe3cc;
 
   /* LED de máscara: sólo en logo, títulos de sección, hover y "nuevo" */
-  --dh-neon:      #d95a47;   /* rojo óxido, de las lonas viejas */
-  --dh-neon-2:    #6fb7a5;   /* verde cardenillo, de la niebla */
+  --dh-neon:      #5fae9a;   /* verde cardenillo, de la niebla de la cabecera */
+  --dh-neon-2:    #8cc7b4;   /* verde salvia más claro, para lugares y widgets */
   --dh-warn:      #e2a94c;   /* ámbar de farol (alertas de la Purga) */
 
   /* Brillo de LED: corto y nítido, sin halo grande */
-  --dh-glow:      0 0 3px rgba(217, 90, 71, .55), 0 0 12px rgba(217, 90, 71, .2);
-  --dh-glow-2:    0 0 3px rgba(111, 183, 165, .5), 0 0 12px rgba(111, 183, 165, .18);
+  --dh-glow:      0 0 3px rgba(95, 174, 154, .55), 0 0 12px rgba(95, 174, 154, .2);
+  --dh-glow-2:    0 0 3px rgba(140, 199, 180, .5), 0 0 12px rgba(140, 199, 180, .18);
 
   /* Tonos derivados (cada modo los redefine) */
   --dh-tint-1:     rgba(111, 183, 165, .06);
   --dh-tint-2:     rgba(226, 169, 76, .035);
-  --dh-selection:  rgba(217, 90, 71, .35);
+  --dh-selection:  rgba(95, 174, 154, .35);
   --dh-fade-1:     rgba(7, 11, 10, .3);
   --dh-fade-2:     rgba(7, 11, 10, .75);
   --dh-header-ph:  linear-gradient(160deg, #10201d, #070b0a 70%);
-  --dh-logo:       #d95a47;
+  --dh-logo:       #8cc7b4;
   --dh-nav-bg:     rgba(13, 19, 18, .92);
   --dh-warn-tint:  rgba(226, 169, 76, .06);
-  --dh-neon-line:  rgba(217, 90, 71, .4);
-  --dh-neon-2-line: rgba(111, 183, 165, .35);
-  --dh-btn-glow:   0 0 10px rgba(217, 90, 71, .22);
+  --dh-neon-line:  rgba(95, 174, 154, .4);
+  --dh-neon-2-line: rgba(140, 199, 180, .35);
+  --dh-btn-glow:   0 0 10px rgba(95, 174, 154, .22);
   --dh-ph:         linear-gradient(135deg, #17201d, #0b100f);
   --dh-ph-icon:    rgba(235, 227, 204, .2);
   --dh-say:        #e8907f;
@@ -161,7 +161,7 @@ body::after {
 .dh-mask {
   display: block; width: 64px; height: 72px; margin: 0 auto 12px;
   color: var(--dh-neon);
-  filter: drop-shadow(0 0 3px rgba(217, 90, 71, .8)) drop-shadow(0 0 10px rgba(217, 90, 71, .35));
+  filter: drop-shadow(0 0 3px rgba(95, 174, 154, .8)) drop-shadow(0 0 10px rgba(95, 174, 154, .35));
   animation: dh-flicker 7s infinite;
 }
 .dh-mask__eyes { animation: dh-blink 11s infinite; }
@@ -451,24 +451,24 @@ body::after {
   --dh-text-mute: #736a74;
   --dh-heading:   #26212b;
 
-  --dh-neon:      #8e1c22;
-  --dh-neon-2:    #2f6359;
+  --dh-neon:      #2a5d52;
+  --dh-neon-2:    #3f7d6d;
   --dh-warn:      #7d5a10;
 
-  --dh-glow:      0 0 1px rgba(142, 28, 34, .3);
-  --dh-glow-2:    0 0 1px rgba(47, 99, 89, .3);
+  --dh-glow:      0 0 1px rgba(42, 93, 82, .3);
+  --dh-glow-2:    0 0 1px rgba(63, 125, 109, .3);
 
   --dh-tint-1:     rgba(142, 28, 34, .04);
   --dh-tint-2:     rgba(47, 99, 89, .05);
-  --dh-selection:  rgba(142, 28, 34, .2);
+  --dh-selection:  rgba(42, 93, 82, .2);
   --dh-fade-1:     rgba(231, 227, 215, .15);
   --dh-fade-2:     rgba(231, 227, 215, .75);
   --dh-header-ph:  linear-gradient(160deg, #d6d2c4, #e7e3d7);
-  --dh-logo:       #8e1c22;
+  --dh-logo:       #2a5d52;
   --dh-nav-bg:     rgba(241, 238, 228, .94);
   --dh-warn-tint:  rgba(125, 90, 16, .08);
-  --dh-neon-line:  rgba(142, 28, 34, .4);
-  --dh-neon-2-line: rgba(47, 99, 89, .4);
+  --dh-neon-line:  rgba(42, 93, 82, .4);
+  --dh-neon-2-line: rgba(63, 125, 109, .4);
   --dh-btn-glow:   none;
   --dh-ph:         linear-gradient(135deg, #d6d1c2, #c4bfae);
   --dh-ph-icon:    rgba(59, 53, 64, .3);
@@ -503,7 +503,7 @@ body::after {
    Así se tiñen todas las páginas de la plataforma (fichas, documentación,
    foro…), también las que no tienen reglas propias aquí abajo. */
 :root {
-  --dh-on-neon: #160406;
+  --dh-on-neon: #071311;
   --dh-line-strong: #3a3b40;
 
   --font-family-sans: 'Karla', 'Segoe UI', sans-serif !important;

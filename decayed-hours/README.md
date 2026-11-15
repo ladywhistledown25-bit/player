@@ -16,15 +16,15 @@ Terror de feria abandonada, a juego con la imagen de cabecera: noche con niebla 
 
 - Fondos: `#070b0a` → `#0d1312` → `#121a18` → `#18221f`, con un leve resplandor verde azulado y grano de textura
 - Texto color hueso: `#cfc8b6` (normal), `#959b90` (secundario), `#ebe3cc` (títulos)
-- Rojo óxido `#d95a47`: botones, títulos de sección, primera letra de las respuestas
-- Verde cardenillo `#6fb7a5`: lugares, widgets laterales
+- Verde cardenillo `#5fae9a`: botones, títulos de sección, primera letra de las respuestas
+- Verde salvia `#8cc7b4`: lugares, widgets laterales
 - Ámbar de farol `#e2a94c`: aviso y reloj de la Purga
 
 **Modo claro** (botón en la cabecera; se guarda la elección de cada usuario):
 
 - Texto: `#3b3540` (normal), `#5f5765` (secundario), `#26212b` (títulos)
 - Fondos hueso con un velo verde grisáceo: `#e7e3d7` → `#f1eee4` → `#e9e5d9` → `#ddd8ca`
-- Acentos en tinta, sin brillo: rojo de lona vieja `#8e1c22`, verde cardenillo `#2f6359`, ámbar de farol `#7d5a10`
+- Acentos en tinta, sin brillo: verde cardenillo `#2a5d52` (principal), verde salvia `#3f7d6d`, ámbar de farol `#7d5a10`
 
 El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.css`.
 
