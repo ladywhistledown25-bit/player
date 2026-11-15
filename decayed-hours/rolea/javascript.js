@@ -70,34 +70,84 @@
 
 /* DECAYED HOURS — fotos con [foto]…[/foto]
    En textos donde rolea.es no deja subir imágenes (por ejemplo, las
-   búsquedas de personaje), escribe en una línea aparte:
+   búsquedas de personaje), escribe:
      [foto]https://enlace-a-la-imagen.jpg[/foto]
    y se mostrará como foto. Variantes: [foto ancha]…[/foto] para apaisadas
-   y [foto cuadrada]…[/foto]. Solo enlaces https. */
+   y [foto cuadrada]…[/foto]. Solo enlaces https. Funciona aunque la
+   etiqueta comparta párrafo con otro texto o el enlace se vuelva un link. */
 (function () {
-  var TAG = /^\s*\[foto(?:\s+(ancha|cuadrada))?\]\s*(https:\/\/[^\s"'()\\<>]+)\s*\[\/foto\]\s*$/i;
-  var SKIP = '[contenteditable="true"], textarea, input, .ProseMirror, .tiptap';
+  var URL_RE = 'https:\\/\\/[^\\s"\'()\\\\<>\\[\\]]+';
+  var FULL = new RegExp('\\[foto(?:\\s+(ancha|cuadrada))?\\]\\s*(' + URL_RE + ')\\s*\\[\\/foto\\]', 'gi');
+  var OPEN_END = /\[foto(?:\s+(ancha|cuadrada))?\]\s*$/i;
+  var CLOSE_START = /^\s*\[\/foto\]/i;
+  var URL_ONLY = new RegExp('^\\s*(' + URL_RE + ')\\s*$', 'i');
+  var SKIP = '[contenteditable="true"], textarea, input, script, style, .ProseMirror, .tiptap';
   var queued = false;
+
+  function foto(kind, url) {
+    var s = document.createElement('span');
+    s.className = 'dh-foto' + (kind ? ' dh-foto--' + kind.toLowerCase() : '');
+    s.style.setProperty('--dh-foto', 'url("' + url + '")');
+    s.setAttribute('role', 'img');
+    s.setAttribute('aria-label', 'Foto');
+    return s;
+  }
+
+  // Quita el salto de línea que queda detrás de la foto
+  function tidyAfter(node) {
+    var n = node.nextSibling;
+    if (n && n.nodeType === 3) n.data = n.data.replace(/^[ \t]*\n/, '');
+    for (var k = 0; k < 2 && n && n.nodeName === 'BR'; k++) {
+      var next = n.nextSibling; n.parentNode.removeChild(n); n = next;
+    }
+  }
+
+  // Caso 1: la etiqueta entera está en un mismo texto
+  function splitText(t) {
+    var text = t.data, last = 0, m, frag = document.createDocumentFragment(), found = false;
+    FULL.lastIndex = 0;
+    while ((m = FULL.exec(text))) {
+      found = true;
+      if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+      frag.appendChild(foto(m[1], m[2]));
+      last = FULL.lastIndex;
+    }
+    if (!found) return false;
+    var rest = text.slice(last).replace(/^[ \t]*\n/, '');
+    if (rest) frag.appendChild(document.createTextNode(rest));
+    var lastFoto = frag.lastChild && frag.lastChild.className ? frag.lastChild : null;
+    t.parentNode.replaceChild(frag, t);
+    if (lastFoto) tidyAfter(lastFoto);
+    return true;
+  }
+
+  // Caso 2: el editor convirtió el enlace en <a>: "[foto]" <a>url</a> "[/foto]"
+  function splitLink(t) {
+    var open = t.data.match(OPEN_END), a = t.nextSibling, close = a && a.nextSibling;
+    if (!open || !a || a.nodeType !== 1 || !close || close.nodeType !== 3) return false;
+    var u = a.textContent.match(URL_ONLY) || (a.getAttribute('href') || '').match(URL_ONLY);
+    if (!u || !CLOSE_START.test(close.data)) return false;
+    var f = foto(open[1], u[1]);
+    t.data = t.data.slice(0, open.index);
+    close.data = close.data.replace(CLOSE_START, '');
+    a.parentNode.replaceChild(f, a);
+    tidyAfter(f);
+    return true;
+  }
 
   function scan() {
     queued = false;
-    var blocks = document.querySelectorAll('p, div, li');
-    for (var i = 0; i < blocks.length; i++) {
-      var el = blocks[i];
-      if (el.children.length > 2) continue;           // solo líneas sueltas
-      var text = el.textContent;
-      if (!text || text.indexOf('[foto') === -1) continue;
-      if (el.closest(SKIP)) continue;
-      var m = text.match(TAG);
-      if (!m) continue;
-      var url = 'url("' + m[2] + '")';
-      if (el.style.getPropertyValue('--dh-foto') === url && el.classList.contains('dh-foto')) continue;
-      el.classList.add('dh-foto');
-      el.classList.toggle('dh-foto--ancha', (m[1] || '').toLowerCase() === 'ancha');
-      el.classList.toggle('dh-foto--cuadrada', (m[1] || '').toLowerCase() === 'cuadrada');
-      el.style.setProperty('--dh-foto', url);
-      el.setAttribute('role', 'img');
-      el.setAttribute('aria-label', 'Foto');
+    if (!document.body) return;
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (n.data.indexOf('[foto') === -1) return NodeFilter.FILTER_SKIP;
+        return n.parentElement && !n.parentElement.closest(SKIP) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+    var list = [];
+    while (walker.nextNode()) list.push(walker.currentNode);
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].parentNode) splitText(list[i]) || splitLink(list[i]);
     }
   }
 

@@ -863,11 +863,11 @@ body::after {
 
 /* ==========================================================================
    FOTOS CON [foto]…[/foto]  (las activa javascript.js)
-   El párrafo con la etiqueta se oculta y en su lugar se ve la foto, con
-   marco de "evidencia": borde, líneas de pantalla y algo desaturada.
+   La etiqueta se sustituye por la foto, con marco de "evidencia": borde,
+   líneas de pantalla y algo desaturada.
    ========================================================================== */
 .dh-foto {
-  position: relative;
+  display: block; position: relative;
   font-size: 0 !important; line-height: 0 !important; color: transparent !important;
   width: min(100%, 300px); aspect-ratio: 3 / 4;
   margin: 12px auto !important; padding: 0 !important;

@@ -45,7 +45,7 @@ El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.c
 
 **Escenas** (`data-route="scene"`): diseño inmersivo. De fondo va la foto del lugar de la escena, oscurecida y difuminada; `javascript.js` la busca sola en la página del lugar. Si quieres otra imagen para un lugar, añádela en `PLACE_IMAGES` dentro de `javascript.js`. El texto va en letra Crimson Pro sobre un panel translúcido con el borde del color de la facción, la primera letra de cada respuesta en rojo LED, el retrato con líneas de pantalla y una cruz entre respuestas. La cabecera de la skin se reduce a una barra fina.
 
-**Fotos con `[foto]…[/foto]`:** donde rolea.es no deja subir imágenes (por ejemplo, las búsquedas de personaje), escribe en una línea aparte `[foto]https://enlace.jpg[/foto]` y `javascript.js` la muestra como foto con marco. Variantes: `[foto ancha]` (16:9) y `[foto cuadrada]`. Solo acepta enlaces `https` y no actúa dentro del editor.
+**Fotos con `[foto]…[/foto]`:** donde rolea.es no deja subir imágenes (por ejemplo, las búsquedas de personaje), escribe `[foto]https://enlace.jpg[/foto]` en cualquier parte del texto y `javascript.js` la sustituye por la foto con marco. Funciona aunque comparta párrafo con otro texto o el editor convierta el enlace en un link. Variantes: `[foto ancha]` (16:9) y `[foto cuadrada]`. Solo acepta enlaces `https` y no actúa dentro del editor.
 
 `template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 
