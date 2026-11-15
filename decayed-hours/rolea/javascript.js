@@ -74,14 +74,12 @@
      [foto]https://enlace-a-la-imagen.jpg[/foto]
    y se mostrará como foto. Variantes: [foto ancha]…[/foto] para apaisadas
    y [foto cuadrada]…[/foto]. Solo enlaces https. Funciona aunque la
-   etiqueta comparta párrafo con otro texto o el enlace se vuelva un link. */
+   etiqueta comparta párrafo con otro texto, el enlace se vuelva un link o
+   el editor parta el texto (por ejemplo, guiones bajos como cursiva). */
 (function () {
-  var URL_RE = 'https:\\/\\/[^\\s"\'()\\\\<>\\[\\]]+';
-  var FULL = new RegExp('\\[foto(?:\\s+(ancha|cuadrada))?\\]\\s*(' + URL_RE + ')\\s*\\[\\/foto\\]', 'gi');
-  var OPEN_END = /\[foto(?:\s+(ancha|cuadrada))?\]\s*$/i;
-  var CLOSE_START = /^\s*\[\/foto\]/i;
-  var URL_ONLY = new RegExp('^\\s*(' + URL_RE + ')\\s*$', 'i');
-  var SKIP = '[contenteditable="true"], textarea, input, script, style, .ProseMirror, .tiptap';
+  var FULL = /\[foto(?:\s+(ancha|cuadrada))?\]\s*(https:\/\/[^\s"'()\\<>\[\]]+)\s*\[\/foto\]/gi;
+  var EDITING = '[contenteditable="true"], [contenteditable=""], textarea, input';
+  var BLOCK = 'p, li, blockquote, td, th, dd, h1, h2, h3, h4, h5, h6, div, section, article';
   var queued = false;
 
   function foto(kind, url) {
@@ -96,59 +94,54 @@
   // Quita el salto de línea que queda detrás de la foto
   function tidyAfter(node) {
     var n = node.nextSibling;
+    while (n && n.nodeType === 3 && n.data === '') n = n.nextSibling;
     if (n && n.nodeType === 3) n.data = n.data.replace(/^[ \t]*\n/, '');
     for (var k = 0; k < 2 && n && n.nodeName === 'BR'; k++) {
       var next = n.nextSibling; n.parentNode.removeChild(n); n = next;
     }
   }
 
-  // Caso 1: la etiqueta entera está en un mismo texto
-  function splitText(t) {
-    var text = t.data, last = 0, m, frag = document.createDocumentFragment(), found = false;
+  // Une el texto de un bloque, busca las etiquetas y las cambia por fotos
+  // con un rango, aunque crucen <a>, <em>, <span>…
+  function processBlock(block) {
+    var nodes = [], text = '', w = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+    while (w.nextNode()) { nodes.push({ n: w.currentNode, start: text.length }); text += w.currentNode.data; }
+    var matches = [], m;
     FULL.lastIndex = 0;
-    while ((m = FULL.exec(text))) {
-      found = true;
-      if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
-      frag.appendChild(foto(m[1], m[2]));
-      last = FULL.lastIndex;
+    while ((m = FULL.exec(text))) matches.push({ s: m.index, e: FULL.lastIndex, kind: m[1], url: m[2] });
+    function at(pos, isEnd) {
+      for (var i = nodes.length - 1; i >= 0; i--) {
+        if (isEnd ? nodes[i].start < pos : nodes[i].start <= pos) return { n: nodes[i].n, o: pos - nodes[i].start };
+      }
+      return null;
     }
-    if (!found) return false;
-    var rest = text.slice(last).replace(/^[ \t]*\n/, '');
-    if (rest) frag.appendChild(document.createTextNode(rest));
-    var lastFoto = frag.lastChild && frag.lastChild.className ? frag.lastChild : null;
-    t.parentNode.replaceChild(frag, t);
-    if (lastFoto) tidyAfter(lastFoto);
-    return true;
-  }
-
-  // Caso 2: el editor convirtió el enlace en <a>: "[foto]" <a>url</a> "[/foto]"
-  function splitLink(t) {
-    var open = t.data.match(OPEN_END), a = t.nextSibling, close = a && a.nextSibling;
-    if (!open || !a || a.nodeType !== 1 || !close || close.nodeType !== 3) return false;
-    var u = a.textContent.match(URL_ONLY) || (a.getAttribute('href') || '').match(URL_ONLY);
-    if (!u || !CLOSE_START.test(close.data)) return false;
-    var f = foto(open[1], u[1]);
-    t.data = t.data.slice(0, open.index);
-    close.data = close.data.replace(CLOSE_START, '');
-    a.parentNode.replaceChild(f, a);
-    tidyAfter(f);
-    return true;
+    for (var j = matches.length - 1; j >= 0; j--) {
+      var a = at(matches[j].s, false), b = at(matches[j].e, true);
+      if (!a || !b) continue;
+      var r = document.createRange();
+      r.setStart(a.n, a.o); r.setEnd(b.n, b.o);
+      r.deleteContents();
+      var f = foto(matches[j].kind, matches[j].url);
+      r.insertNode(f);
+      tidyAfter(f);
+    }
+    return matches.length;
   }
 
   function scan() {
     queued = false;
     if (!document.body) return;
-    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (n) {
-        if (n.data.indexOf('[foto') === -1) return NodeFilter.FILTER_SKIP;
-        return n.parentElement && !n.parentElement.closest(SKIP) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-      }
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) { return n.data.indexOf('[foto') === -1 && n.data.indexOf('foto]') === -1 ? NodeFilter.FILTER_SKIP : NodeFilter.FILTER_ACCEPT; }
     });
-    var list = [];
-    while (walker.nextNode()) list.push(walker.currentNode);
-    for (var i = 0; i < list.length; i++) {
-      if (list[i].parentNode) splitText(list[i]) || splitLink(list[i]);
+    var blocks = [];
+    while (w.nextNode()) {
+      var el = w.currentNode.parentElement;
+      if (!el || el.closest(EDITING) || el.closest('script, style')) continue;
+      var block = el.closest(BLOCK) || el;
+      if (blocks.indexOf(block) === -1) blocks.push(block);
     }
+    for (var i = 0; i < blocks.length; i++) processBlock(blocks[i]);
   }
 
   function queue() {
