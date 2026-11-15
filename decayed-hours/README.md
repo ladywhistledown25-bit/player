@@ -45,6 +45,8 @@ El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.c
 
 **Escenas** (`data-route="scene"`): diseño inmersivo. De fondo va la foto del lugar de la escena, oscurecida y difuminada; `javascript.js` la busca sola en la página del lugar. Si quieres otra imagen para un lugar, añádela en `PLACE_IMAGES` dentro de `javascript.js`. El texto va en letra Crimson Pro sobre un panel translúcido con el borde del color de la facción, la primera letra de cada respuesta en rojo LED, el retrato con líneas de pantalla y una cruz entre respuestas. La cabecera de la skin se reduce a una barra fina.
 
+**Fotos con `[foto]…[/foto]`:** donde rolea.es no deja subir imágenes (por ejemplo, las búsquedas de personaje), escribe en una línea aparte `[foto]https://enlace.jpg[/foto]` y `javascript.js` la muestra como foto con marco. Variantes: `[foto ancha]` (16:9) y `[foto cuadrada]`. Solo acepta enlaces `https` y no actúa dentro del editor.
+
 `template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 
 **Cabecera con imagen:** con la clase `dh-header--art` la cabecera toma la proporción de la imagen (3 : 1 por defecto, ajustable con `--dh-header-ratio`), oculta el logo de la skin porque la imagen ya trae el título y se funde con la página por abajo. En `img/` hay una versión comprimida de la cabecera actual (JPG de 330 KB y WebP de 230 KB, en lugar del PNG de 2,5 MB).

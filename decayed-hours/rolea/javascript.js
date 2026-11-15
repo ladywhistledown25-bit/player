@@ -67,3 +67,46 @@
   if (window.Rolea && window.Rolea.on) window.Rolea.on('page', update);
   else update();
 })();
+
+/* DECAYED HOURS — fotos con [foto]…[/foto]
+   En textos donde rolea.es no deja subir imágenes (por ejemplo, las
+   búsquedas de personaje), escribe en una línea aparte:
+     [foto]https://enlace-a-la-imagen.jpg[/foto]
+   y se mostrará como foto. Variantes: [foto ancha]…[/foto] para apaisadas
+   y [foto cuadrada]…[/foto]. Solo enlaces https. */
+(function () {
+  var TAG = /^\s*\[foto(?:\s+(ancha|cuadrada))?\]\s*(https:\/\/[^\s"'()\\<>]+)\s*\[\/foto\]\s*$/i;
+  var SKIP = '[contenteditable="true"], textarea, input, .ProseMirror, .tiptap';
+  var queued = false;
+
+  function scan() {
+    queued = false;
+    var blocks = document.querySelectorAll('p, div, li');
+    for (var i = 0; i < blocks.length; i++) {
+      var el = blocks[i];
+      if (el.children.length > 2) continue;           // solo líneas sueltas
+      var text = el.textContent;
+      if (!text || text.indexOf('[foto') === -1) continue;
+      if (el.closest(SKIP)) continue;
+      var m = text.match(TAG);
+      if (!m) continue;
+      var url = 'url("' + m[2] + '")';
+      if (el.style.getPropertyValue('--dh-foto') === url && el.classList.contains('dh-foto')) continue;
+      el.classList.add('dh-foto');
+      el.classList.toggle('dh-foto--ancha', (m[1] || '').toLowerCase() === 'ancha');
+      el.classList.toggle('dh-foto--cuadrada', (m[1] || '').toLowerCase() === 'cuadrada');
+      el.style.setProperty('--dh-foto', url);
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', 'Foto');
+    }
+  }
+
+  function queue() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(scan);
+  }
+
+  queue();
+  new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+})();

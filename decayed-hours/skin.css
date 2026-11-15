@@ -862,6 +862,33 @@ body::after {
 }
 
 /* ==========================================================================
+   FOTOS CON [foto]…[/foto]  (las activa javascript.js)
+   El párrafo con la etiqueta se oculta y en su lugar se ve la foto, con
+   marco de "evidencia": borde, líneas de pantalla y algo desaturada.
+   ========================================================================== */
+.dh-foto {
+  position: relative;
+  font-size: 0 !important; line-height: 0 !important; color: transparent !important;
+  width: min(100%, 300px); aspect-ratio: 3 / 4;
+  margin: 12px auto !important; padding: 0 !important;
+  background: var(--dh-foto) center / cover no-repeat, var(--dh-ph);
+  border: 1px solid var(--dh-line); border-radius: 2px;
+  box-shadow: 0 0 0 4px var(--dh-surface-2), 0 0 0 5px var(--dh-neon-line), 0 14px 40px rgba(0, 0, 0, .45);
+  filter: grayscale(.3) contrast(1.05);
+  transition: filter .35s;
+}
+.dh-foto:hover { filter: none; }
+.dh-foto * { display: none !important; }
+.dh-foto::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .16) 0 1px, transparent 1px 3px);
+}
+.dh-foto--ancha { width: min(100%, 560px); aspect-ratio: 16 / 9; }
+.dh-foto--cuadrada { width: min(100%, 320px); aspect-ratio: 1; }
+:root[data-theme="light"] .dh-foto { filter: grayscale(.2) sepia(.12); }
+:root[data-theme="light"] .dh-foto::after { opacity: .3; }
+
+/* ==========================================================================
    ESCENA INMERSIVA (/scenes/…)
    Fondo con la foto del lugar (la pone javascript.js en --dh-scene-bg),
    texto en columna de lectura sobre un panel translúcido.
