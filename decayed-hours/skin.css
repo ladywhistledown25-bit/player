@@ -556,7 +556,7 @@ body::after {
 
 /* Botón de modo dentro de la cabecera */
 .dh-header .dh-theme-toggle {
-  position: absolute; top: 14px; right: 14px;
+  position: absolute; top: 14px; right: 14px; z-index: 2;
   padding: 8px 12px;
   background: var(--dh-nav-bg) !important;
   border: 1px solid var(--dh-line); border-radius: 20px;
