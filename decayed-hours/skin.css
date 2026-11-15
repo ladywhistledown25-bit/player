@@ -726,6 +726,11 @@ body::after {
    Cada lugar en una fila: miniatura · nombre y descripción · contadores ·
    última actividad. Las fotos ya no ocupan todo el ancho.
    ========================================================================== */
+:root {
+  /* Tamaño de la miniatura de cada lugar: cámbialo aquí */
+  --dh-place-thumb-w: 140px;
+  --dh-place-thumb-h: 90px;
+}
 .classicPlaces__category { overflow: hidden; }
 .classicPlaces__categoryHeader { border-bottom: 1px solid var(--dh-line) !important; position: relative; }
 .classicPlaces__categoryHeader::after {
@@ -739,7 +744,7 @@ body::after {
 
 .classicPlaces__row {
   display: grid !important;
-  grid-template-columns: 140px minmax(0, 1fr);
+  grid-template-columns: var(--dh-place-thumb-w) minmax(0, 1fr);
   gap: 18px; align-items: center;
   padding: 14px 16px !important;
   border-top: 1px solid var(--dh-line) !important;
@@ -751,7 +756,7 @@ body::after {
 /* Miniatura con líneas de pantalla; recupera el color al pasar el ratón */
 .classicPlaces__rowIcon {
   position: relative;
-  width: 140px !important; height: 90px !important; max-width: none !important;
+  width: var(--dh-place-thumb-w) !important; height: var(--dh-place-thumb-h) !important; max-width: none !important;
   margin: 0 !important; aspect-ratio: auto !important;
   border: 1px solid var(--dh-line); border-radius: 2px; overflow: hidden;
   background: var(--dh-ph);
