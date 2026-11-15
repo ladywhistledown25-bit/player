@@ -50,4 +50,6 @@ El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.c
 
 `template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 
-Imágenes: `style="--dh-header-img:url('...'); --dh-header-img-light:url('...')"` en `.dh-header` (la del modo claro es opcional; 2400 × 700 px); `style="--img:url('...')"` en los enlaces de `.dh-affiliates`.
+**Cabecera con imagen:** con la clase `dh-header--art` la cabecera toma la proporción de la imagen (3 : 1 por defecto, ajustable con `--dh-header-ratio`), oculta el logo de la skin porque la imagen ya trae el título y se funde con la página por abajo. En `img/` hay una versión comprimida de la cabecera actual (JPG de 330 KB y WebP de 230 KB, en lugar del PNG de 2,5 MB).
+
+Imágenes: `style="--dh-header-img:url('...'); --dh-header-img-light:url('...')"` en `.dh-header` (la del modo claro es opcional); `style="--img:url('...')"` en los enlaces de `.dh-affiliates`.

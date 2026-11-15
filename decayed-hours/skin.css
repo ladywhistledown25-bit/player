@@ -124,6 +124,38 @@ body::after {
 }
 .dh-header__inner { position: relative; z-index: 1; width: 100%; padding: 48px 16px 28px; text-align: center; }
 
+/* Cabecera con imagen que ya trae el título (clase .dh-header--art):
+   la caja toma la proporción de la imagen para verse entera en cualquier
+   pantalla, y la parte de abajo se funde con la página. Se ocultan el logo
+   y la máscara de la skin para no repetir el título. */
+.dh-header--art {
+  background: none !important;
+  border-bottom: 0 !important;
+  min-height: 0 !important;
+  aspect-ratio: var(--dh-header-ratio, 3 / 1);
+}
+.dh-header--art::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--dh-header-img, var(--dh-header-ph)) center / cover no-repeat;
+}
+:root[data-theme="light"] .dh-header--art::before {
+  background-image: var(--dh-header-img-light, var(--dh-header-img, var(--dh-header-ph)));
+}
+.dh-header--art::before,
+.dh-header--art::after {
+  -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+}
+.dh-header--art::after { opacity: .45; }
+.dh-header--art .dh-mask,
+.dh-header--art .dh-logo {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; animation: none;
+}
+.dh-header--art .dh-header__inner { padding: 0 16px 10px; }
+.dh-header--art .dh-tagline { text-shadow: 0 1px 8px var(--dh-bg), 0 0 2px var(--dh-bg); }
+@media (max-width: 640px) { .dh-header--art .dh-tagline { display: none; } }
+
 /* Máscara LED: ojos en cruz y boca cosida */
 .dh-mask {
   display: block; width: 64px; height: 72px; margin: 0 auto 12px;
@@ -400,47 +432,48 @@ body::after {
 .dh-footer a { color: var(--dh-text-soft); }
 
 /* --------------------------------------------------------------------------
-   Modo claro: papel hueso envejecido, sin blancos puros.
-   Los LED pasan a tinta: rojo sangre seca y verde musgo.
+   Modo claro: papel hueso envejecido con un velo de niebla verdosa, a juego
+   con la imagen de cabecera; sin blancos puros.
+   Los LED pasan a tinta: rojo de lona vieja, verde cardenillo y ámbar de farol.
    Se activa con data-theme="light" en <html> (botón de la barra de menú).
    
    -------------------------------------------------------------------------- */
 :root[data-theme="light"] {
-  --dh-bg:        #e9e2d5;
-  --dh-surface:   #f2ece1;
-  --dh-surface-2: #ebe3d5;
-  --dh-surface-3: #e0d6c5;
-  --dh-line:      #d3c8b5;
+  --dh-bg:        #e7e3d7;
+  --dh-surface:   #f1eee4;
+  --dh-surface-2: #e9e5d9;
+  --dh-surface-3: #ddd8ca;
+  --dh-line:      #cfc8b6;
 
   --dh-text:      #3b3540;
   --dh-text-soft: #5f5765;
   --dh-text-mute: #736a74;
   --dh-heading:   #26212b;
 
-  --dh-neon:      #a3141f;
-  --dh-neon-2:    #4a6a0c;
-  --dh-warn:      #7a5a00;
+  --dh-neon:      #8e1c22;
+  --dh-neon-2:    #2f6359;
+  --dh-warn:      #7d5a10;
 
-  --dh-glow:      0 0 1px rgba(163, 20, 31, .3);
-  --dh-glow-2:    0 0 1px rgba(74, 106, 12, .3);
+  --dh-glow:      0 0 1px rgba(142, 28, 34, .3);
+  --dh-glow-2:    0 0 1px rgba(47, 99, 89, .3);
 
-  --dh-tint-1:     rgba(163, 20, 31, .05);
-  --dh-tint-2:     rgba(74, 106, 12, .04);
-  --dh-selection:  rgba(163, 20, 31, .2);
-  --dh-fade-1:     rgba(233, 226, 213, .15);
-  --dh-fade-2:     rgba(233, 226, 213, .75);
-  --dh-header-ph:  linear-gradient(160deg, #ddd1c0, #e9e2d5);
-  --dh-logo:       #9e1420;
-  --dh-nav-bg:     rgba(242, 236, 225, .94);
-  --dh-warn-tint:  rgba(122, 90, 0, .08);
-  --dh-neon-line:  rgba(163, 20, 31, .4);
-  --dh-neon-2-line: rgba(74, 106, 12, .4);
+  --dh-tint-1:     rgba(142, 28, 34, .04);
+  --dh-tint-2:     rgba(47, 99, 89, .05);
+  --dh-selection:  rgba(142, 28, 34, .2);
+  --dh-fade-1:     rgba(231, 227, 215, .15);
+  --dh-fade-2:     rgba(231, 227, 215, .75);
+  --dh-header-ph:  linear-gradient(160deg, #d6d2c4, #e7e3d7);
+  --dh-logo:       #8e1c22;
+  --dh-nav-bg:     rgba(241, 238, 228, .94);
+  --dh-warn-tint:  rgba(125, 90, 16, .08);
+  --dh-neon-line:  rgba(142, 28, 34, .4);
+  --dh-neon-2-line: rgba(47, 99, 89, .4);
   --dh-btn-glow:   none;
-  --dh-ph:         linear-gradient(135deg, #d9cebd, #c9bba6);
+  --dh-ph:         linear-gradient(135deg, #d6d1c2, #c4bfae);
   --dh-ph-icon:    rgba(59, 53, 64, .3);
-  --dh-say:        #9e1b26;
-  --dh-g-purgador: #a3141f;
-  --dh-g-superviviente: #4a6a0c;
+  --dh-say:        #8e1c22;
+  --dh-g-purgador: #8e1c22;
+  --dh-g-superviviente: #2f6359;
 }
 /* En papel las fotos no necesitan oscurecerse tanto */
 :root[data-theme="light"] .dh-forum__img { filter: grayscale(.45) sepia(.15) brightness(.97); }
@@ -723,6 +756,11 @@ body::after {
 :root[data-path^="/scenes/"] .dh-tagline,
 :root[data-path^="/scenes/"] .dh-mask { display: none; }
 :root[data-path^="/scenes/"] .dh-header .dh-theme-toggle { top: 50%; transform: translateY(-50%); }
+:root[data-path^="/scenes/"] .dh-header--art { aspect-ratio: auto; border-bottom: 1px solid var(--dh-line) !important; }
+:root[data-path^="/scenes/"] .dh-header--art::before { display: none; }
+:root[data-path^="/scenes/"] .dh-header--art .dh-logo {
+  position: static !important; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal;
+}
 
 /* Los bloques insertados (.html-inject) ocupan todo el ancho */
 .html-inject .dh-header { border-radius: 0 0 var(--dh-radius) var(--dh-radius); }

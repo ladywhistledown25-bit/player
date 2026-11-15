@@ -1,11 +1,14 @@
 <!-- DECAYED HOURS · Pegar en: «Antes del contenido»
      Cabecera con el logo y el botón de modo claro/oscuro, en todas las páginas.
-     Imagen de cabecera (2400 × 700 px): añade a <header>
-       style="--dh-header-img:url('https://imagen-modo-oscuro.jpg'); --dh-header-img-light:url('https://imagen-modo-claro.jpg')"
-     La del modo claro es opcional: si no la pones, se usa la del oscuro. -->
+     Imagen de cabecera: va en style="--dh-header-img:url('…')".
+     Para otra imagen en modo claro, añade --dh-header-img-light:url('…').
+     La clase dh-header--art es para imágenes que ya traen el título: oculta
+     el logo de la skin y ajusta la caja a la proporción 3:1 de la imagen
+     (si la cambias por otra proporción, añade --dh-header-ratio: 16 / 5).
+     Sin esa clase se ve el logo glitch con la máscara. -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <div class="dh">
-  <header class="dh-header">
+  <header class="dh-header dh-header--art" style="--dh-header-img:url('https://raw.githubusercontent.com/ladywhistledown25-bit/imgs/refs/heads/main/Decayed%20Hours.png')">
     <button class="dh-theme-toggle" type="button">
       <span class="dh-when-dark"><i class="fa-solid fa-sun"></i>Modo claro</span>
       <span class="dh-when-light"><i class="fa-solid fa-moon"></i>Modo oscuro</span>
