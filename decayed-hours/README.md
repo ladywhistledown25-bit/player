@@ -50,4 +50,4 @@ El modo claro está definido en el bloque `:root[data-theme="light"]` de `skin.c
 
 `template.html` y `preview.html` son una maqueta de referencia de foro clásico; no se pegan en rolea.es.
 
-Imágenes: `style="--dh-header-img:url('...')"` en `.dh-header`; `style="--img:url('...')"` en los enlaces de `.dh-affiliates`.
+Imágenes: `style="--dh-header-img:url('...'); --dh-header-img-light:url('...')"` en `.dh-header` (la del modo claro es opcional; 2400 × 700 px); `style="--img:url('...')"` en los enlaces de `.dh-affiliates`.

@@ -116,6 +116,12 @@ body::after {
   background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px);
 }
 :root[data-theme="light"] .dh-header::after { opacity: .25; }
+/* Imagen propia para el modo claro (--dh-header-img-light); si no hay, usa la del oscuro */
+:root[data-theme="light"] .dh-header {
+  background:
+    linear-gradient(180deg, var(--dh-fade-1) 0%, var(--dh-fade-2) 60%, var(--dh-bg) 100%),
+    var(--dh-header-img-light, var(--dh-header-img, var(--dh-header-ph))) center / cover no-repeat;
+}
 .dh-header__inner { position: relative; z-index: 1; width: 100%; padding: 48px 16px 28px; text-align: center; }
 
 /* Máscara LED: ojos en cruz y boca cosida */
