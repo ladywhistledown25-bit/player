@@ -647,6 +647,11 @@ body::after {
   background: var(--dh-surface-2) !important; color: var(--dh-text) !important;
   border-color: var(--dh-line) !important;
 }
+/* Menús emergentes largos (p. ej. el de personajes con muchas fichas):
+   rolea.es no les pone altura máxima y la parte de abajo queda fuera de la
+   pantalla. Se limitan al alto de la ventana y el interior hace scroll. */
+.popover__content { max-height: calc(100dvh - 24px); }
+.popover__inner { overflow-y: auto; overscroll-behavior: contain; }
 .sceneExtraFilters__legend { color: var(--dh-text-mute) !important; }
 
 /* ---------- Lista de escenas (temas) ---------- */
